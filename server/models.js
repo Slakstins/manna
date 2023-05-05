@@ -1,0 +1,25 @@
+const mongoose = require("mongoose");
+
+const AddressSchema = new mongoose.Schema({
+  address: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  notes: {
+    type: Date,
+    required: true,
+  },
+
+});
+
+const AddressModel = mongoose.model("Address", AddressSchema);
+
+module.exports = AddressModel;
