@@ -1,4 +1,4 @@
-connectionString = 'mongodb+srv://seth:eYRrN999CHU0ijzo@cluster0.8aqzx0f.mongodb.net/?retryWrites=true&w=majority' 
+connectionString = 'mongodb+srv://seth:eYRrN999CHU0ijzo@cluster0.8aqzx0f.mongodb.net/mannaDB?retryWrites=true&w=majority' 
 const express = require("express");
 const mongoose = require("mongoose");
 const Router = require("./routes")

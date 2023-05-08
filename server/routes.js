@@ -28,7 +28,7 @@ app.delete('/address/(:id)', async (req, res) => {
   })
 
 
-app.get("/address", async (request, response) => {
+app.get("/addresses", async (request, response) => {
   const addresses = await AddressModel.find({});
 
   // perfs.sort(function(a, b) {

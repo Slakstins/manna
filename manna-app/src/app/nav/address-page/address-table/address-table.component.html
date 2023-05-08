@@ -1,0 +1,28 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let address of addresses | slice:(page-1) * 10:(page) * 10; let i=index" role="button" (click)="displayRowData(address)">
+        <td class="col-3">{{address.name}}</td>
+        <td class="col-4">{{address.address}}</td>
+        <td class="col-3">{{address.phone}}</td>
+        <td>{{address.notes}}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="bottom-nav">
+    <button type="button" class="me-5 bt btn-light" *ngIf="page != 1">
+
+        <i class="bi bi-arrow-left" (click)="prevPage()"></i>
+    </button>
+    <span>{{page}} / {{pageCount}}</span>
+    <button type="button" class="ms-5 bt btn-light" (click)="nextPage()" [hidden]="page >= pageCount">
+        <i class="bi bi-arrow-right"></i>
+    </button>
+</div>

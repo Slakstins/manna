@@ -1,0 +1,17 @@
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-list"></i>
+        </button>
+    </div>
+</nav>
+<div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-light shadow-3 p-4">
+        <button [routerLink]="['/addresses']" class="btn btn-link btn-block border-bottom m-0" data-bs-toggle="collapse"
+            data-bs-target="#navbarToggleExternalContent">Addresses</button>
+        <button [routerLink]="['/requests']" class="btn btn-link btn-block border-bottom m-0" data-bs-toggle="collapse"
+            data-bs-target="#navbarToggleExternalContent">Requests</button>
+    </div>
+</div>

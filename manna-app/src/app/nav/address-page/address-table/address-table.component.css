@@ -1,0 +1,17 @@
+.bottom-nav {
+    text-align: center;
+    position: fixed;
+    bottom:0;
+    /* left: 50%; */
+    /* right: 50%; */
+    z-index: 1;
+    background-color: lightgrey;
+    padding: 10px;
+    width: 100%;
+
+}
+
+i {
+    font-size: 30px;
+}
+
