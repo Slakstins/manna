@@ -8,6 +8,8 @@ import { NavComponent } from './nav/nav.component';
 import { AddressPageComponent } from './nav/address-page/address-page.component';
 import { AddressTableComponent } from './nav/address-page/address-table/address-table.component';
 import { AddressPopupComponent } from './nav/address-page/address-table/address-popup/address-popup.component';
+import { FormsModule } from '@angular/forms';
+import { SearchPipe } from './nav/address-page/search.pipe';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { AddressPopupComponent } from './nav/address-page/address-table/address-
     AddressPageComponent,
     AddressTableComponent,
     AddressPopupComponent,
+    SearchPipe,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

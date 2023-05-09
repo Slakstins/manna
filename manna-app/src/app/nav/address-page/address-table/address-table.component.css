@@ -15,3 +15,12 @@ i {
     font-size: 30px;
 }
 
+span {
+    display: inline-block;
+    width: 75px;
+}
+
+.inactive {
+    opacity: 5%;
+    cursor: default;
+}

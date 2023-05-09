@@ -12,14 +12,15 @@ export class AddressTableComponent implements OnInit, OnDestroy{
   constructor(private addressAPI: AddressAPIService) {
 
   }
+  searchText = "";
   rowsToDisplay = 10;
-
   page: number = 1;
   pageCount!: number;
   sub!: Subscription;
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
+  searchField = "address";
   ngOnInit(): void {
     this.sub = this.addressAPI.get().subscribe((res) => {
       this.addresses = res;
@@ -41,11 +42,15 @@ export class AddressTableComponent implements OnInit, OnDestroy{
 
   }
   prevPage() {
-    this.page--;
+    if (this.page > 1){
+      this.page--;
+    }
   }
 
   nextPage() {
-    this.page++;
+    if (this.page < this.pageCount){
+      this.page++;
+    }
   }
 
 }
