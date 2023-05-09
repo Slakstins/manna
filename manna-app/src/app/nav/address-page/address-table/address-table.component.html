@@ -1,15 +1,9 @@
-<div class="input-group ms-3">
-  <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="search by ..." aria-label="search text"
-    aria-describedby="basic-addon2">
-  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-    <option selected value="1">Name</option>
-    <option value="2">Address</option>
-    <option value="3">Phone</option>
-    <option value="4">Notes</option>
+<div class="row flex-row input-group ms-3">
+  <input (ngModelChange)="goToFirstPage()" id="search-input" type="text" class="form-control" [(ngModel)]="searchText" placeholder="type here to filter results"
+    aria-label="search text" aria-describedby="basic-addon2">
+  <select id="search-field" (ngModelChange)="goToFirstPage()" [(ngModel)]="searchField" class="form-select form-select-lg me-5" aria-label=".form-select-lg example">
+    <option *ngFor="let op of options; let i=index" [value]="op.description">{{op.description}}</option>
   </select>
-  <div class="input-group-append">
-    <button class="me-4 btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
-  </div>
 </div>
 <table class="table">
   <thead>
@@ -21,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let address of addresses | search: searchText: searchField: page let i=index" role="button"
+    <tr *ngFor="let address of addresses | search: searchText: searchField: page: this let i=index" role="button"
       (click)="displayRowData(address)">
       <td class="col-3">{{address.name}}</td>
       <td class="col-4">{{address.address}}</td>

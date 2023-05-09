@@ -24,3 +24,8 @@ span {
     opacity: 5%;
     cursor: default;
 }
+
+#search-input {
+    width: 45%;
+
+}
