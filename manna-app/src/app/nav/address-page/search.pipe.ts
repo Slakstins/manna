@@ -27,6 +27,9 @@ export class SearchPipe implements PipeTransform {
   }
 
   updatePageCount(addresses: Address[], atc: AddressTableComponent) {
+    if (addresses == undefined){
+      return;
+    }
       atc.pageCount = (Math.floor( addresses.length / atc.rowsToDisplay)) + 1;
       if (addresses.length % 10 == 0){
         atc.pageCount -= 1;

@@ -10,6 +10,10 @@ import { AddressTableComponent } from './nav/address-page/address-table/address-
 import { AddressPopupComponent } from './nav/address-page/address-table/address-popup/address-popup.component';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from './nav/address-page/search.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule} from '@angular/material/dialog';
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +28,9 @@ import { SearchPipe } from './nav/address-page/search.pipe';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

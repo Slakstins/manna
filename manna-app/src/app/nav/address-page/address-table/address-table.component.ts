@@ -2,6 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Address } from 'src/app/address';
 import { AddressAPIService } from 'src/app/addressapi.service';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AddressPopupComponent } from './address-popup/address-popup.component';
+
 
 @Component({
   selector: 'app-address-table',
@@ -9,7 +12,7 @@ import { AddressAPIService } from 'src/app/addressapi.service';
   styleUrls: ['./address-table.component.css']
 })
 export class AddressTableComponent implements OnInit, OnDestroy{
-  constructor(private addressAPI: AddressAPIService) {
+  constructor(private addressAPI: AddressAPIService, public dialog: MatDialog) {
 
   }
   options = [{description: "name", id: 1},{description: "address", id: 2},{description: "phone", id: 3},{description: "notes", id: 4}
@@ -41,6 +44,10 @@ export class AddressTableComponent implements OnInit, OnDestroy{
 
   displayRowData(address: Address) {
     console.log(address);
+    this.dialog.open(AddressPopupComponent, {
+      data: address,
+    });
+
 
   }
   prevPage() {
