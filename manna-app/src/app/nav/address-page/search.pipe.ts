@@ -18,7 +18,14 @@ export class SearchPipe implements PipeTransform {
     }
     else {
       var filtered = addresses.filter((address) => {
-        return address[searchField as keyof Address].includes(searchText.trim())
+        if (searchField == "any"){
+          return Object.entries(address).some(entry =>
+            String(entry[1]).toLowerCase().includes(searchText.trim().toLowerCase()));
+
+        }
+        else {
+          return address[searchField as keyof Address].toLowerCase().includes(searchText.trim().toLowerCase())
+        }
       })
       this.updatePageCount(filtered, atc);
       return filtered.slice((page - 1) * 10, (page) * 10);

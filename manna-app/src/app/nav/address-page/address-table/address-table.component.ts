@@ -15,7 +15,7 @@ export class AddressTableComponent implements OnInit, OnDestroy{
   constructor(private addressAPI: AddressAPIService, public dialog: MatDialog) {
 
   }
-  options = [{description: "name", id: 1},{description: "address", id: 2},{description: "phone", id: 3},{description: "notes", id: 4}
+  options = [{description: "any", id: 0}, {description: "name", id: 1},{description: "address", id: 2},{description: "phone", id: 3},{description: "notes", id: 4} 
 ];
   searchText = "";
   rowsToDisplay = 10;
@@ -25,7 +25,7 @@ export class AddressTableComponent implements OnInit, OnDestroy{
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
-  searchField = "address";
+  searchField = "any";
   ngOnInit(): void {
     this.sub = this.addressAPI.get().subscribe((res) => {
       this.addresses = res;
