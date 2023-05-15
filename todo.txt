@@ -1,0 +1,2 @@
+add receiving delivery as a drop down to affect search results
+add note editing to popup

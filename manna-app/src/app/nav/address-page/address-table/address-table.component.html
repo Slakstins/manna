@@ -8,6 +8,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th scope="col">Delivery</th>
       <th scope="col">Name</th>
       <th scope="col">Address</th>
       <th scope="col">Phone</th>
@@ -17,7 +18,11 @@
   <tbody>
     <tr *ngFor="let address of addresses | search: searchText: searchField: page: this let i=index" role="button"
       (click)="displayRowData(address)">
-      <td class="col-3">{{address.name}}</td>
+      <td class="col-1">
+        <i class="bi bi-check" *ngIf="address.delivery"></i>
+        <i class="bi bi-x" *ngIf="!address.delivery"></i>
+      </td>
+      <td class="col-2">{{address.name}}</td>
       <td class="col-4">{{address.address}}</td>
       <td class="col-3">{{address.phone}}</td>
       <td>{{address.notes}}</td>

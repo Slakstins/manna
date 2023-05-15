@@ -11,6 +11,14 @@
 
 }
 
+.bi-x {
+    color: red;
+}
+
+.bi-check {
+    color: green;
+}
+
 i {
     font-size: 30px;
 }

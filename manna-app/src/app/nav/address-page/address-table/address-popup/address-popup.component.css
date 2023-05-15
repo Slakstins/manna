@@ -2,3 +2,14 @@
     width: 500px;
     height: 500px;
 }
+.bi-x {
+    color: red;
+}
+
+.bi-check {
+    color: green;
+}
+
+h2 {
+    font-size: 20px;
+}

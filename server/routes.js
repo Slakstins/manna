@@ -14,6 +14,35 @@ app.post("/address", async (request, response) => {
     }
 });
 
+app.patch("/address/(:id)/setDelivery", async (req, res) => {
+    try {
+      addr = await AddressModel.findById(req.params.id);
+      if (addr == null){
+        throw new Error("no address with id: " + req.params.id);
+      }
+      addr.delivery = req.body.val;
+      await addr.save();
+      res.send(addr);
+    } catch (error) {
+      res.status(500).send(error);
+    }
+});
+
+app.patch("/address/(:id)/setNotes", async (req, res) => {
+    try {
+      addr = await AddressModel.findById(req.params.id);
+      if (addr == null){
+        throw new Error("no address with id: " + req.params.id);
+      }
+      console.log(req.body.notes);
+      addr.notes = req.body.notes;
+      await addr.save();
+      res.send(addr);
+    } catch (error) {
+      res.status(500).send(error);
+    }
+});
+
 app.delete('/address/(:id)', async (req, res) => {
     try {
       msg = await AddressModel.findByIdAndRemove(req.params.id);
@@ -29,6 +58,7 @@ app.delete('/address/(:id)', async (req, res) => {
 
 
 app.get("/addresses", async (request, response) => {
+  console.log("received");
   const addresses = await AddressModel.find({});
 
   // perfs.sort(function(a, b) {

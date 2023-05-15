@@ -14,9 +14,13 @@ const AddressSchema = new mongoose.Schema({
     required: true,
   },
   notes: {
-    type: Date,
-    required: true,
+    type: String,
+    required: false,
   },
+  delivery: {
+    type: Boolean,
+    required: false,
+  }
 
 });
 

@@ -14,6 +14,12 @@ export class AddressAPIService {
   public get() {
     return this.http.get<Address[]>(this.url + "addresses");
   }
+  public setDelivery(data: Boolean, id: string){
+    return this.http.patch(this.url + "address/" + id + "/setDelivery", {val: data});
+  }
+  public setNotes(data: string, id: string){
+    return this.http.patch(this.url + "address/" + id + "/setNotes", {notes: data});
+  }
   public post(data: Address) {
     return this.http.post(this.url + "address", data);
   }
