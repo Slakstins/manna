@@ -11,8 +11,18 @@
 
 }
 
+#add-address-button {
+    width: 20px;
+    padding: 5px;
+    margin: 0;
+
+}
+
 .bi-x {
     color: red;
+}
+.add-address {
+    display: inline-block;
 }
 
 .bi-check {

@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchPipe } from './nav/address-page/search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule} from '@angular/material/dialog';
+import { AddAddressComponent } from './nav/address-page/address-table/add-address/add-address.component';
 
 
 
@@ -23,6 +24,7 @@ import { MatDialogModule} from '@angular/material/dialog';
     AddressTableComponent,
     AddressPopupComponent,
     SearchPipe,
+    AddAddressComponent,
   ],
   imports: [
     HttpClientModule,

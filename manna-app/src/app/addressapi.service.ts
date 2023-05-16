@@ -20,7 +20,7 @@ export class AddressAPIService {
   public setNotes(data: string, id: string){
     return this.http.patch(this.url + "address/" + id + "/setNotes", {notes: data});
   }
-  public post(data: Address) {
+  public post<Address>(data: Address) {
     return this.http.post(this.url + "address", data);
   }
   public delete(id: string) { 

@@ -1,2 +1,4 @@
 add receiving delivery as a drop down to affect search results
-add note editing to popup
+add a way to edit name, phone, address
+add a new address
+delete an address

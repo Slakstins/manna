@@ -1,9 +1,12 @@
 <div class="row flex-row input-group ms-3">
   <input (ngModelChange)="goToFirstPage()" id="search-input" type="text" class="form-control" [(ngModel)]="searchText" placeholder="type here to filter results"
     aria-label="search text" aria-describedby="basic-addon2">
-  <select id="search-field" (ngModelChange)="goToFirstPage()" [(ngModel)]="searchField" class="form-select form-select-lg me-5" aria-label=".form-select-lg example">
+
+  <select id="search-field" (ngModelChange)="goToFirstPage()" [(ngModel)]="searchField" class="form-select form-select-lg me-2" aria-label=".form-select-lg example">
     <option *ngFor="let op of options; let i=index" [value]="op.description">{{op.description}}</option>
   </select>
+
+  <button type="button" id="add-address-button" class="btn form-control btn-primary me-4" (click)="displayAddAddress()"><i class="bi bi-plus"></i></button>
 </div>
 <table class="table">
   <thead>
