@@ -1,0 +1,9 @@
+version: '3'
+services:
+  manna-devcontainer:
+    image: mcr.microsoft.com/devcontainers/typescript-node:0-20
+    container_name: manna-devcontainer
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    command: tail -f /dev/null
