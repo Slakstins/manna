@@ -17,6 +17,6 @@ To run server for debugging:
 To build frontend for distribution
 1. Start a terminal in the manna-app folder
 2. npm run build
-3. Alter server.js to include serving files from /manna-app/dist folder
+3. Alter server.js to include serving files from /dist folder
 4. Start a terminal in the server folder
 5. npm start
