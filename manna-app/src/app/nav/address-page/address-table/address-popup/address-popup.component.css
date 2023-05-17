@@ -1,7 +1,9 @@
 .sizing {
-    width: 500px;
-    height: 500px;
+    width: min(500px, 80vw);
+    /* height: 500px; */
+    /* overflow-x: hidden; */
 }
+
 .bi-x {
     color: red;
 }
@@ -10,6 +12,23 @@
     color: green;
 }
 
+.row {
+    width: 100%;
+}
+
 h2 {
     font-size: 20px;
+}
+
+
+.dialog-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.dropdown {
+    display: inline-block;
+    margin-left: 20%;
 }

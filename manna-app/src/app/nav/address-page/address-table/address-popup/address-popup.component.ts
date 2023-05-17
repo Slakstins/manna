@@ -31,6 +31,15 @@ export class AddressPopupComponent implements OnDestroy{
       console.log(error);
     });
   }
+
+  deleteClicked() {
+    if(confirm("Are you sure to delete "+ this.data.name)) {
+      this.deleteDelivery();
+  }
+
+  }
+
+
   deleteDelivery() {
     this.sub = this.addressAPI.delete(this.data._id).subscribe((res) => {
       console.log("deletion successful");
