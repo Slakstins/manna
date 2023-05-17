@@ -20,3 +20,9 @@ To build frontend for distribution
 3. Alter server.js to include serving files from /dist folder
 4. Start a terminal in the server folder
 5. npm start
+
+To build docker container
+1. Start a terminal in the server folder
+2. docker build -t manna-app ./
+3. docker image tag manna-app registry.3.116vb.dns9.co/manna-app
+4. docker push registry.3.116vb.dns9.co/manna-app

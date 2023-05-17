@@ -36,6 +36,6 @@ app.get('/', (req,res) => {
   res.sendFile(process.cwd()+"/dist/index.html")
 });
 
-app.listen(3000, () => {
+app.listen(3000, '0.0.0.0', () => {
   console.log("Server is running at port 3000");
 });
