@@ -6,7 +6,7 @@ const Router = require("./routes")
 const app = express();
 
 app.use(express.json());
-app.use(express.static(process.cwd()+"/../manna-app/dist/manna-app/"));
+app.use(express.static(process.cwd()+"/dist/"));
 
 
 mongoose.connect(connectionString,
@@ -33,9 +33,9 @@ app.use(Router);
 
 
 app.get('/', (req,res) => {
-  res.sendFile(process.cwd()+"/../manna-app/dist/manna-app/index.html")
+  res.sendFile(process.cwd()+"/dist/index.html")
 });
 
-app.listen(3000, () => {
+app.listen(3000, '0.0.0.0', () => {
   console.log("Server is running at port 3000");
 });
