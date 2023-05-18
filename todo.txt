@@ -1,3 +1,13 @@
 add receiving delivery as a drop down to affect search results
 add a way to edit name, phone, address
 put delete in drop down and add confirmation
+
+Manage drivers
+  Drivers can indicate whether they are delivering food in the coming week
+  Manage delivery routing
+Create routes
+  Export address data to a routing optimization tool?
+  Research into routing APIs.
+  Assign routes to drivers
+
+
