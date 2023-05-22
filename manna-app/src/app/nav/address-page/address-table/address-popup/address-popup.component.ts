@@ -22,12 +22,15 @@ export class AddressPopupComponent implements OnDestroy{
 
 
 
-  updateName() {
-    this.sub = this.addressAPI.setName(this.nameTemp, this.data._id).subscribe((res) => {
-      this.data.name = this.nameTemp;
-      this.editName = false;
+
+
+  updateNotes() {
+    const setNotesFunc = this.addressAPI.setFuncs.notes;
+    this.sub = setNotesFunc(this.notesTemp, this.data._id).subscribe((_res: any) => {
+      this.data.notes = this.notesTemp;
+      this.dialogRef.close();
     },
-    (error) => {
+    (error: any) => {
       console.log(error);
     });
   }
@@ -35,13 +38,15 @@ export class AddressPopupComponent implements OnDestroy{
 
 
 
+
   toggleDelivery() {
-    this.sub = this.addressAPI.setDelivery(!this.data.delivery, this.data._id).subscribe((res) => {
+    const setDeliveryFunc = this.addressAPI.setFuncs.delivery;
+    this.sub = setDeliveryFunc(!this.data.delivery, this.data._id).subscribe((_res: any) => {
       this.data.delivery = !this.data.delivery;
       console.log("successfully set");
 
     },
-    (error) => {
+    (error: any) => {
       console.log(error);
     });
   }
@@ -57,16 +62,6 @@ export class AddressPopupComponent implements OnDestroy{
     this.sub = this.addressAPI.delete(this.data._id).subscribe((res) => {
       console.log("deletion successful");
       this.onDel.emit(this.data._id);
-      this.dialogRef.close();
-    },
-    (error) => {
-      console.log(error);
-    });
-  }
-
-  updateNotes() {
-    this.sub = this.addressAPI.setNotes(this.notesTemp, this.data._id).subscribe((res) => {
-      this.data.notes = this.notesTemp;
       this.dialogRef.close();
     },
     (error) => {

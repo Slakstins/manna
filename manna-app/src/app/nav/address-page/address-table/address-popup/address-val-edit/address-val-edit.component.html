@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-4">
+        {{label}}:
+    </div>
+    <div *ngIf="!editing" class="col-8" role="button" (click)="editing = true">
+        {{value}}
+    </div>
+    <input *ngIf="editing" class="col-8" [(ngModel)]="tempValue">
+    <div class="col-4"></div>
+    <button *ngIf="editing" class="col-4 btn btn-primary" type="submit" (click)="update()">Save</button>
+    <button *ngIf="editing" class="col-4 btn btn-primary" type="submit" (click)="editing = false">Cancel</button>
+</div>

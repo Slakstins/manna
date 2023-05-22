@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Address } from './address';
+import { HttpSetFuncs } from './http-set-funcs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +16,19 @@ export class AddressAPIService {
     return this.http.get<Address[]>(this.url + "addresses");
   }
 
-  public setDelivery(data: Boolean, id: string){
-    return this.http.patch(this.url + "address/" + id + "/setDelivery", {val: data});
-  }
 
-  public setNotes(data: string, id: string){
-    return this.http.patch(this.url + "address/" + id + "/setNotes", {notes: data});
-  }
-  public setName(data: string, id: string){
-    return this.http.patch(this.url + "address/" + id + "/setName", {name: data});
+
+  setFuncs: HttpSetFuncs = {
+    name: (data: string, id: string) =>
+    {return this.http.patch(this.url + "address/" + id + "/set/name", {name: data})},
+    phone: (data: string, id: string) =>
+    {return this.http.patch(this.url + "address/" + id + "/set/phone", {phone: data})},
+    address: (data: string, id: string) =>
+    {return this.http.patch(this.url + "address/" + id + "/set/address", {address: data})},
+    notes: (data: string, id: string) =>
+    {return this.http.patch(this.url + "address/" + id + "/set/notes", {notes: data})},
+    delivery: (data: string, id: string) =>
+    {return this.http.patch(this.url + "address/" + id + "/set/delivery", {delivery: data})},
   }
 
 

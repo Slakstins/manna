@@ -13,6 +13,7 @@ import { SearchPipe } from './nav/address-page/search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule} from '@angular/material/dialog';
 import { AddAddressComponent } from './nav/address-page/address-table/add-address/add-address.component';
+import { AddressValEditComponent } from './nav/address-page/address-table/address-popup/address-val-edit/address-val-edit.component';
 
 
 
@@ -25,6 +26,7 @@ import { AddAddressComponent } from './nav/address-page/address-table/add-addres
     AddressPopupComponent,
     SearchPipe,
     AddAddressComponent,
+    AddressValEditComponent,
   ],
   imports: [
     HttpClientModule,
