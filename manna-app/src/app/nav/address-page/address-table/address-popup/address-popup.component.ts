@@ -21,9 +21,9 @@ export class AddressPopupComponent implements OnDestroy{
   onDel = new EventEmitter();
 
 
-  updateDelivery(val: Boolean) {
-    this.data.delivery = val as boolean;
-    this.sub = this.addressAPI.setDelivery(val, this.data._id).subscribe((res) => {
+  toggleDelivery() {
+    this.sub = this.addressAPI.setDelivery(!this.data.delivery, this.data._id).subscribe((res) => {
+      this.data.delivery = !this.data.delivery;
       console.log("successfully set");
 
     },
@@ -33,10 +33,9 @@ export class AddressPopupComponent implements OnDestroy{
   }
 
   deleteClicked() {
-    if(confirm("Are you sure to delete "+ this.data.name)) {
+    if(confirm("Are you sure you want to delete entry for: "+ this.data.name)) {
       this.deleteDelivery();
-  }
-
+    }
   }
 
 

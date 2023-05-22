@@ -34,7 +34,6 @@ app.patch("/address/(:id)/setNotes", async (req, res) => {
       if (addr == null){
         throw new Error("no address with id: " + req.params.id);
       }
-      console.log(req.body.notes);
       addr.notes = req.body.notes;
       await addr.save();
       res.send(addr);
@@ -57,8 +56,8 @@ app.delete('/address/(:id)', async (req, res) => {
   })
 
 
+
 app.get("/addresses", async (request, response) => {
-  console.log("received");
   const addresses = await AddressModel.find({});
 
   // perfs.sort(function(a, b) {
