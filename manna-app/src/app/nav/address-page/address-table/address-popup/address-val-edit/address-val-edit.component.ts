@@ -43,8 +43,7 @@ export class AddressValEditComponent implements OnInit, OnDestroy{
 
 
   update() {
-    const httpFunc = this.addressAPI.setFuncs[this.label as keyof HttpSetFuncs];
-    this.sub = httpFunc(this.tempValue, this.id).subscribe((_res: any) => {
+    this.sub = this.addressAPI.setField(this.tempValue, this.id, this.label).subscribe((_res: any) => {
       this.value = this.tempValue;
       this.editing = false;
       this.edit.emit(this.value);

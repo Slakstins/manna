@@ -43,6 +43,7 @@ app.patch("/address/(:id)/setNotes", async (req, res) => {
 });
 
 app.patch("/address/(:id)/set/(:field)", async (req, res) => {
+  console.log("made it")
     try {
       field = req.params.field;
       addr = await AddressModel.findById(req.params.id);

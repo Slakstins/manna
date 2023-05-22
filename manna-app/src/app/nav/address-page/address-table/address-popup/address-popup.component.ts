@@ -25,8 +25,7 @@ export class AddressPopupComponent implements OnDestroy{
 
 
   updateNotes() {
-    const setNotesFunc = this.addressAPI.setFuncs.notes;
-    this.sub = setNotesFunc(this.notesTemp, this.data._id).subscribe((_res: any) => {
+    this.sub = this.addressAPI.setField(this.notesTemp, this.data._id, "notes").subscribe((_res: any) => {
       this.data.notes = this.notesTemp;
       this.dialogRef.close();
     },
@@ -40,8 +39,7 @@ export class AddressPopupComponent implements OnDestroy{
 
 
   toggleDelivery() {
-    const setDeliveryFunc = this.addressAPI.setFuncs.delivery;
-    this.sub = setDeliveryFunc(!this.data.delivery, this.data._id).subscribe((_res: any) => {
+    this.sub = this.addressAPI.setField(!this.data.delivery, this.data._id, "delivery").subscribe((_res: any) => {
       this.data.delivery = !this.data.delivery;
       console.log("successfully set");
 
