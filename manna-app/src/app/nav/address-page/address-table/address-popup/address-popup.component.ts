@@ -14,11 +14,25 @@ export class AddressPopupComponent implements OnDestroy{
 
 
   sub!: Subscription;
-
   notesTemp = this.data.notes;
-
-
   onDel = new EventEmitter();
+
+  editName = false;
+  nameTemp = this.data.name;
+
+
+
+  updateName() {
+    this.sub = this.addressAPI.setName(this.nameTemp, this.data._id).subscribe((res) => {
+      this.data.name = this.nameTemp;
+      this.editName = false;
+    },
+    (error) => {
+      console.log(error);
+    });
+  }
+
+
 
 
   toggleDelivery() {
@@ -51,9 +65,9 @@ export class AddressPopupComponent implements OnDestroy{
   }
 
   updateNotes() {
-    this.data.notes = this.notesTemp;
     this.sub = this.addressAPI.setNotes(this.notesTemp, this.data._id).subscribe((res) => {
-      console.log("successfully set");
+      this.data.notes = this.notesTemp;
+      this.dialogRef.close();
     },
     (error) => {
       console.log(error);

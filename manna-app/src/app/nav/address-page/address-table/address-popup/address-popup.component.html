@@ -11,19 +11,24 @@
 
 
 
-                <li><button type="button" class="btn btn-outline-danger mt-2" (click)="deleteClicked()"><i
-                            class="bi bi-trash"></i></button></li>
+                <li (click)="deleteClicked()" role="button">Delete</li>
             </ul>
         </div>
     </div>
+
     <div class="row">
         <div class="col-4">
             name:
         </div>
-        <div class="col-8">
+        <div *ngIf="!editName" class="col-8" role="button" (click)="editName = true">
             {{data.name}}
         </div>
+        <input *ngIf="editName" class="col-8" [(ngModel)]="nameTemp">
+        <div class="col-4"></div>
+        <button *ngIf="editName" class="col-4 btn btn-primary" type="submit" (click)="updateName()">Save</button>
+        <button *ngIf="editName" class="col-4 btn btn-primary" type="submit" (click)="editName = false">Cancel</button>
     </div>
+
     <div class="row">
         <div class="col-4">
             address:
@@ -42,15 +47,7 @@
     </div>
     <div class="row">
         <div class="col-4">
-            notes:
-        </div>
-        <div class="col-6">
-            {{data.notes}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-4">
-            delivery?:
+            delivery:
         </div>
         <div class="col-6">
             <div class="form-check">
@@ -76,7 +73,7 @@
     <div class="form-group mt-3">
         <label for="exampleFormControlTextarea1">Notes</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="notesTemp" rows="3"></textarea>
-        <button type="button" class="btn btn-outline-success me-3" (click)="updateNotes()">Save</button>
-        <button type="button" class="btn btn-outline-danger" (click)="discardNotesChanges()">Discard</button>
+        <button type="button" class="btn btn-outline-success me-3" (click)="updateNotes()">Save Notes</button>
+        <button type="button" class="btn btn-outline-danger" (click)="discardNotesChanges()">Discard Changes</button>
     </div>
 </div>

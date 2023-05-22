@@ -22,6 +22,11 @@ export class AddressAPIService {
   public setNotes(data: string, id: string){
     return this.http.patch(this.url + "address/" + id + "/setNotes", {notes: data});
   }
+  public setName(data: string, id: string){
+    return this.http.patch(this.url + "address/" + id + "/setName", {name: data});
+  }
+
+
 
   public post<Address>(data: Address) {
     return this.http.post(this.url + "address", data);

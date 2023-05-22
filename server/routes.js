@@ -42,6 +42,20 @@ app.patch("/address/(:id)/setNotes", async (req, res) => {
     }
 });
 
+app.patch("/address/(:id)/setName", async (req, res) => {
+    try {
+      addr = await AddressModel.findById(req.params.id);
+      if (addr == null){
+        throw new Error("no address with id: " + req.params.id);
+      }
+      addr.name = req.body.name;
+      await addr.save();
+      res.send(addr);
+    } catch (error) {
+      res.status(500).send(error);
+    }
+});
+
 app.delete('/address/(:id)', async (req, res) => {
     try {
       msg = await AddressModel.findByIdAndRemove(req.params.id);

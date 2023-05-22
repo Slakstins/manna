@@ -11,6 +11,9 @@
 .bi-check {
     color: green;
 }
+.inline-block{
+    display: inline-block;
+}
 
 .row {
     width: 100%;
