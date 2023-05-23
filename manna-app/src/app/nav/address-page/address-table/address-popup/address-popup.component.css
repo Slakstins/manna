@@ -15,6 +15,27 @@
     display: inline-block;
 }
 
+app-address-val-edit, .addressValEdit {
+    font-size: 20px;
+    height: 77px;
+}
+
+.ul {
+    border-bottom: 1px solid black;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  margin-top: 10px;
+  margin-left: 0px;;
+}
+
+
 .row {
     width: 100%;
 }

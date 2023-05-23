@@ -20,8 +20,8 @@ export class AddressPopupComponent implements OnDestroy{
   editName = false;
   nameTemp = this.data.name;
 
-
-
+//   valEditComponentLabels: (keyof Address)[] = ["address" as keyof Address,
+// "name" as keyof Address, "phone" as keyof Address, "notes" as keyof Address];
 
 
   updateNotes() {

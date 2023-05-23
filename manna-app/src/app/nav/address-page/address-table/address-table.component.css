@@ -18,6 +18,11 @@
 
 }
 
+.table, .input-group {
+    max-width: 1000px;
+    margin: 0 auto !important;
+}
+
 .bi-x {
     color: red;
 }
