@@ -27,6 +27,7 @@ constructor(public dialogRef: MatDialogRef<AddAddressComponent>, private address
 
 
   addAddress() {
+    alert(this.address.delivery)
     this.sub = this.addressAPI.post(this.address).subscribe((res) => {
       console.log("successfully added");
       // alert(res.toString());
@@ -38,6 +39,10 @@ constructor(public dialogRef: MatDialogRef<AddAddressComponent>, private address
     (error) => {
       console.log(error);
     });
+  }
+
+  toggleDelivery() {
+    this.address.delivery = !this.address.delivery;
   }
 
   ngOnDestroy(): void {
