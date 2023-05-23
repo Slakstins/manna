@@ -1,5 +1,4 @@
 add receiving delivery as a drop down to affect search results
-add option to set all deliveries to false
 
 Manage drivers
   Drivers can indicate whether they are delivering food in the coming week

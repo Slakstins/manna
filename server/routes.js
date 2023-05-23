@@ -46,7 +46,7 @@ app.patch("/address/setDeliveriesFalse", async (req, res) => {
     try {
       field = req.params.field;
       await AddressModel.updateMany({delivery: true}, {$set: {delivery: false}});
-      res.send("deliveries set to false");
+      res.send({message: "deliveries set to false"});
     } catch (error) {
       console.log(error)
       res.status(500).send(error);

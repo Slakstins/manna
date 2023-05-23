@@ -17,7 +17,11 @@ export class AddressAPIService {
 
 
   public setField(data: any, id: string, field: string) {
-    return this.http.patch(this.url + "address/" + id + "/set/" + field, {[field]: data})
+    return this.http.patch(this.url + "address/" + id + "/set/" + field, {[field]: data});
+  }
+
+  public setDeliveriesFalse() {
+    return this.http.patch(this.url + "address/setDeliveriesFalse", {});
   }
 
 
