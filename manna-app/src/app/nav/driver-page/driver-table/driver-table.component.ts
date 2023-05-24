@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { DriverAPIService } from 'src/app/api-services/driverapi.service';
+import { Driver } from 'src/app/interfaces/driver';
 
 @Component({
   selector: 'app-driver-table',
@@ -7,6 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['../../shared-styles/table.component.css']
 })
 export class DriverTableComponent {
+  constructor(private driverAPI: DriverAPIService){}
 
   options = [{ description: "any", id: 0 }, { description: "name", id: 1 }, { description: "phone", id: 2 },{ description: "notes", id: 3 }
   ];
@@ -20,55 +23,55 @@ export class DriverTableComponent {
   }
   searchField = "any";
   ngOnInit(): void {
-    this.sub = this.addressAPI.get().subscribe((res) => {
-      this.addresses = res;
-      this.pageCount = (Math.floor(this.addresses.length / this.rowsToDisplay)) + 1;
-      if (this.addresses.length % 10 == 0) {
+    this.sub = this.driverAPI.get().subscribe((res) => {
+      this.drivers = res;
+      this.pageCount = (Math.floor(this.drivers.length / this.rowsToDisplay)) + 1;
+      if (this.drivers.length % 10 == 0) {
         this.pageCount -= 1;
       }
-      console.log(this.addresses);
+      console.log(this.drivers);
     },
       (error) => {
         console.log(error);
       })
 
   }
-  addresses!: Address[];
+  drivers!: Driver[];
 
-  displayAddAddress() {
-    let dialogRef = this.dialog.open(AddAddressComponent);
-    //subscribe to events!!
-    const sub = dialogRef.componentInstance.onAdd.subscribe((address) => {
-      this.addAddressTableData(address);
-      // do something
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      sub.unsubscribe();
-    });
+  displayAddDriver() {
+    // let dialogRef = this.dialog.open(AddDriverComponent);
+    // //subscribe to events!!
+    // const sub = dialogRef.componentInstance.onAdd.subscribe((driver) => {
+    //   this.addDriverTableData(driver);
+    //   // do something
+    // });
+    // dialogRef.afterClosed().subscribe(() => {
+    //   sub.unsubscribe();
+    // });
   }
 
-  addAddressTableData(address: Address) {
-    this.addresses.push(address);
+  addDriverTableData(driver: Driver) {
+    this.drivers.push(driver);
   }
 
-  removeAddressTableData(id: string){
-    this.addresses = this.addresses.filter((address) => {
-      return address._id != id;
+  removeDriverTableData(id: string){
+    this.drivers = this.drivers.filter((driver) => {
+      return driver._id != id;
     })
   }
 
-  displayRowData(address: Address) {
-    console.log(address);
-    let dialogRef = this.dialog.open(AddressPopupComponent, {
-      data: address,
-    });
-    const sub = dialogRef.componentInstance.onDel.subscribe((id) => {
-      this.removeAddressTableData(id);
-      // do something
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      sub.unsubscribe();
-    });
+  displayRowData(driver: Driver) {
+    // console.log(driver);
+    // let dialogRef = this.dialog.open(DriverPopupComponent, {
+    //   data: driver,
+    // });
+    // const sub = dialogRef.componentInstance.onDel.subscribe((id) => {
+    //   this.removeDriverTableData(id);
+    //   // do something
+    // });
+    // dialogRef.afterClosed().subscribe(() => {
+    //   sub.unsubscribe();
+    // });
   }
 
   prevPage() {

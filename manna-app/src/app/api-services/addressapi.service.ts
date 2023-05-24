@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environment';
 import { SharedAPIService } from './sharedapi.service';
+import { Address } from '../interfaces/address';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AddressAPIService {
   } 
 
   public get() {
-    return this.sharedAPIService.get(this.collection);
+    return this.sharedAPIService.get<Address>(this.collection);
   }
 
 

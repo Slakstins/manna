@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environment';
 import { SharedAPIService } from './sharedapi.service';
+import { Driver } from '../interfaces/driver';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class DriverAPIService {
   } 
 
   public get() {
-    return this.sharedAPIService.get(this.collection);
+    return this.sharedAPIService.get<Driver>(this.collection);
   }
 
 
