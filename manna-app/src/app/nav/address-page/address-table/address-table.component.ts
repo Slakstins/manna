@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Address } from 'src/app/address';
-import { AddressAPIService } from 'src/app/addressapi.service';
+import { Address } from 'src/app/interfaces/address';
+import { AddressAPIService } from 'src/app/api-services/addressapi.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddressPopupComponent } from './address-popup/address-popup.component';
 import { AddAddressComponent } from './add-address/add-address.component';
@@ -10,7 +10,7 @@ import { AddAddressComponent } from './add-address/add-address.component';
 @Component({
   selector: 'app-address-table',
   templateUrl: './address-table.component.html',
-  styleUrls: ['./address-table.component.css']
+  styleUrls: ['../../shared-styles/table.component.css']
 })
 export class AddressTableComponent implements OnInit, OnDestroy {
   constructor(private addressAPI: AddressAPIService, public dialog: MatDialog) {

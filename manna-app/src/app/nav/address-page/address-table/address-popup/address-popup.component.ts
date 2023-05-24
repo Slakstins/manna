@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Inject, Input, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { Address } from 'src/app/address';
-import { AddressAPIService } from 'src/app/addressapi.service';
+import { Address } from 'src/app/interfaces/address';
+import { AddressAPIService } from 'src/app/api-services/addressapi.service';
 
 @Component({
   selector: 'app-address-popup',
   templateUrl: './address-popup.component.html',
-  styleUrls: ['./address-popup.component.css']
+  styleUrls: ['../../../shared-styles/row-popup.component.css']
 })
 export class AddressPopupComponent implements OnDestroy{
   constructor(public dialogRef: MatDialogRef<AddressPopupComponent>, @Inject(MAT_DIALOG_DATA) public data: Address, private addressAPI: AddressAPIService) {}

@@ -1,13 +1,13 @@
 import { Component, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { Address } from 'src/app/address';
-import { AddressAPIService } from 'src/app/addressapi.service';
+import { Address } from 'src/app/interfaces/address';
+import { AddressAPIService } from 'src/app/api-services/addressapi.service';
 
 @Component({
   selector: 'app-add-address',
   templateUrl: './add-address.component.html',
-  styleUrls: ['./add-address.component.css']
+  styleUrls: ['../../../shared-styles/add-row.component.css']
 })
 export class AddAddressComponent {
 constructor(public dialogRef: MatDialogRef<AddAddressComponent>, private addressAPI: AddressAPIService) {}
