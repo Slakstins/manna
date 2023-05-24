@@ -1,1 +1,44 @@
-<p>driver-table works!</p>
+<div class="row flex-row input-group ms-3">
+  <input (ngModelChange)="goToFirstPage()" id="search-input" type="text" class="form-control" [(ngModel)]="searchText" placeholder="type here to filter results"
+    aria-label="search text" aria-describedby="basic-addon2">
+
+  <select id="search-field" (ngModelChange)="goToFirstPage()" [(ngModel)]="searchField" class="form-select form-select-lg me-2" aria-label=".form-select-lg example">
+    <option *ngFor="let op of options; let i=index" [value]="op.description">{{op.description}}</option>
+  </select>
+
+  <button type="button" id="add-button" class="btn form-control btn-primary me-4" (click)="displayAddAddress()"><i class="bi bi-plus"></i></button>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Delivery</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let address of addresses | search: searchText: searchField: page: this let i=index" role="button"
+      (click)="displayRowData(address)">
+      <td class="col-1">
+        <i class="bi bi-check" *ngIf="address.delivery"></i>
+        <i class="bi bi-x" *ngIf="!address.delivery"></i>
+      </td>
+      <td class="col-2">{{address.name}}</td>
+      <td class="col-4">{{address.address}}</td>
+      <td class="col-3">{{address.phone}}</td>
+      <td>{{address.notes}}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="bottom-nav">
+  <button type="button" class="me-5 bt btn-light" [class.inactive]="page == 1">
+
+    <i class="bi bi-arrow-left" (click)="prevPage()"></i>
+  </button>
+  <span>{{page}} / {{pageCount}}</span>
+  <button type="button" class="ms-5 bt btn-light" (click)="nextPage()" [class.inactive]="page >= pageCount">
+    <i class="bi bi-arrow-right"></i>
+  </button>
+</div>

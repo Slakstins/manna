@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Address } from 'src/app/address';
+import { Address } from 'src/app/interfaces/address';
 import { AddressTableComponent } from './address-table/address-table.component';
 
 @Pipe({

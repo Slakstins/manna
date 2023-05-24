@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { AddressAPIService } from '../addressapi.service';
+import { AddressAPIService } from '../api-services/addressapi.service';
 import { Subscription } from 'rxjs';
 
 @Component({

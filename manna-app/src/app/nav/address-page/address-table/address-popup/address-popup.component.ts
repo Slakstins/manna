@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Inject, Input, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { Address } from 'src/app/address';
-import { AddressAPIService } from 'src/app/addressapi.service';
+import { Address } from 'src/app/interfaces/address';
+import { AddressAPIService } from 'src/app/api-services/addressapi.service';
 
 @Component({
   selector: 'app-address-popup',
