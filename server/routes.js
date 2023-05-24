@@ -1,6 +1,6 @@
 const express = require("express");
-const AddressModel = require("./models");
-// const DriverModel = require("./models");
+const AddressModel = require("./models/address");
+const DriverModel = require("./models/driver");
 const req = require("express/lib/request");
 const app = express();
 
@@ -86,7 +86,6 @@ app.delete('/address/(:id)', async (req, res) => {
 
 app.get("/address/all", async (request, response) => {
   const addresses = await AddressModel.find({});
-  console.log(addresses);
 
   // perfs.sort(function(a, b) {
     // return (a.date < b.date) ? -1 : ((a.date > b.date) ? 1 : 0);
@@ -183,7 +182,6 @@ app.delete('/driver/(:id)', async (req, res) => {
 
 app.get("/driver/all", async (request, response) => {
   const drivers = await DriverModel.find({});
-
   // perfs.sort(function(a, b) {
     // return (a.date < b.date) ? -1 : ((a.date > b.date) ? 1 : 0);
 // });
