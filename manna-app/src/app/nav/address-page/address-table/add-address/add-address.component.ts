@@ -7,7 +7,7 @@ import { AddressAPIService } from 'src/app/addressapi.service';
 @Component({
   selector: 'app-add-address',
   templateUrl: './add-address.component.html',
-  styleUrls: ['./add-address.component.css']
+  styleUrls: ['../../../shared-styles/add-row.component.css']
 })
 export class AddAddressComponent {
 constructor(public dialogRef: MatDialogRef<AddAddressComponent>, private addressAPI: AddressAPIService) {}

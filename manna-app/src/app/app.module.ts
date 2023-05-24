@@ -15,6 +15,7 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { AddAddressComponent } from './nav/address-page/address-table/add-address/add-address.component';
 import { AddressValEditComponent } from './nav/address-page/address-table/address-popup/address-val-edit/address-val-edit.component';
 import { DriverPageComponent } from './nav/driver-page/driver-page.component';
+import { DriverTableComponent } from './nav/driver-page/driver-table/driver-table.component';
 
 
 
@@ -29,6 +30,7 @@ import { DriverPageComponent } from './nav/driver-page/driver-page.component';
     AddAddressComponent,
     AddressValEditComponent,
     DriverPageComponent,
+    DriverTableComponent,
   ],
   imports: [
     HttpClientModule,

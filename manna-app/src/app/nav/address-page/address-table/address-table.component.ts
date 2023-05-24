@@ -10,7 +10,7 @@ import { AddAddressComponent } from './add-address/add-address.component';
 @Component({
   selector: 'app-address-table',
   templateUrl: './address-table.component.html',
-  styleUrls: ['./address-table.component.css']
+  styleUrls: ['../../shared-styles/table.component.css']
 })
 export class AddressTableComponent implements OnInit, OnDestroy {
   constructor(private addressAPI: AddressAPIService, public dialog: MatDialog) {
