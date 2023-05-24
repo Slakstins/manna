@@ -1,5 +1,6 @@
 const express = require("express");
 const AddressModel = require("./models");
+// const DriverModel = require("./models");
 const req = require("express/lib/request");
 const app = express();
 
@@ -85,6 +86,7 @@ app.delete('/address/(:id)', async (req, res) => {
 
 app.get("/address/all", async (request, response) => {
   const addresses = await AddressModel.find({});
+  console.log(addresses);
 
   // perfs.sort(function(a, b) {
     // return (a.date < b.date) ? -1 : ((a.date > b.date) ? 1 : 0);

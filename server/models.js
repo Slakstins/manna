@@ -48,5 +48,4 @@ const DriverSchema = new mongoose.Schema({
 const AddressModel = mongoose.model("Address", AddressSchema);
 const DriverModel = mongoose.model("Driver", DriverSchema);
 
-module.exports = AddressModel;
-module.exports = DriverModel;
+module.exports = AddressModel, DriverModel;
