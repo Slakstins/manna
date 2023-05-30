@@ -51,20 +51,9 @@ export class AddressTableComponent implements OnInit, OnDestroy {
         addFunction: this.addAddress
       }
     });
-    //subscribe to events!!
-    // const sub = dialogRef.componentInstance.onAdd.subscribe((address) => {
-      // this.addAddressTableData(address);
-      // dialogRef.close();
-      // do something
-    // });
-    // dialogRef.afterClosed().subscribe(() => {
-    //   sub.unsubscribe();
-    // });
+
   }
 
-  addAddressTableData(address: Address) {
-    this.addresses.push(address);
-  }
 
   removeAddressTableData(id: string){
     this.addresses = this.addresses.filter((address) => {
@@ -114,11 +103,7 @@ export class AddressTableComponent implements OnInit, OnDestroy {
     //call api
     this.sub = this.addressAPI.post(a).subscribe((res) => {
       console.log("successfully added");
-      // alert(res.toString());
-      //add the id to address!!
-      this.addresses.push(res as Address)
-      // this.onAdd.emit(this.address);
-      // this.dialogRef.close();
+      this.addresses.push(res as Address);
       dialogRef.close();
     },
     (error) => {
@@ -128,6 +113,7 @@ export class AddressTableComponent implements OnInit, OnDestroy {
 
 
 
+  //fixes weird type issue
     update<Key extends keyof Address>(key: Key, a: Address[Key], value: any) {
       a[key] = value;
   }

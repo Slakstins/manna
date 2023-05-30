@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { AddPopupFormat, InputType } from 'src/app/add-popup/add-popup-format';
+import { AddPopupComponent } from 'src/app/add-popup/add-popup.component';
 import { DriverAPIService } from 'src/app/api-services/driverapi.service';
 import { Driver } from 'src/app/interfaces/driver';
 
@@ -9,7 +12,7 @@ import { Driver } from 'src/app/interfaces/driver';
   styleUrls: ['../../shared-styles/table.component.css']
 })
 export class DriverTableComponent {
-  constructor(private driverAPI: DriverAPIService){}
+  constructor(private driverAPI: DriverAPIService, public dialog: MatDialog){}
 
   options = [{ description: "any", id: 0 }, { description: "name", id: 1 }, { description: "phone", id: 2 },{ description: "notes", id: 3 }
   ];
@@ -39,15 +42,34 @@ export class DriverTableComponent {
   drivers!: Driver[];
 
   displayAddDriver() {
-    // let dialogRef = this.dialog.open(AddDriverComponent);
-    // //subscribe to events!!
-    // const sub = dialogRef.componentInstance.onAdd.subscribe((driver) => {
-    //   this.addDriverTableData(driver);
-    //   // do something
-    // });
-    // dialogRef.afterClosed().subscribe(() => {
-    //   sub.unsubscribe();
-    // });
+    let dialogRef = this.dialog.open(AddPopupComponent, {
+      data: {
+        addPopupData: this.addPopupData,
+        addFunction: this.addDriver
+      }
+    });
+  }
+  addDriver = (d: AddPopupFormat[], dialogRef: MatDialogRef<AddPopupComponent>) => {
+    //convert to address format
+    let driver : Driver = {driving: false, name: "", notes: "", phone: ""};
+    for(let field of d) {
+      this.update(field.label as keyof(Driver), driver, field.value );
+    }
+    //call api
+    this.sub = this.driverAPI.post(driver).subscribe((res) => {
+      console.log("successfully added");
+      this.drivers.push(res as Driver)
+      console.log(this.drivers);
+      dialogRef.close();
+    },
+    (error) => {
+      console.log(error);
+    });
+  } 
+
+  //fixes weird type issue
+   update<Key extends keyof Driver>(key: Key, a: Driver[Key], value: any) {
+      a[key] = value;
   }
 
   addDriverTableData(driver: Driver) {
@@ -93,5 +115,27 @@ export class DriverTableComponent {
     this.searchField = field;
   }
 
+  addPopupData: AddPopupFormat[] = [
+    {
+    label: "name",
+    type: InputType.Text,
+    value: ""
+    },
+    {
+    label: "phone",
+    type: InputType.Text,
+    value: ""
+    },
+    {
+    label: "notes",
+    type: InputType.Text,
+    value: ""
+    },
+    {
+    label: "driving",
+    type: InputType.Check,
+    value: false
+    },
+]
 
 }
