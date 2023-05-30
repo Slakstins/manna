@@ -1,0 +1,28 @@
+<div class="bg-white sizing container p-4">
+    <h1>Address Data</h1>
+    <form>
+        <div *ngFor="let d of dataFieldsObj; ">
+
+            <div *ngIf="d.type == 0" class="form-group mb-3">
+                <label for={{d.label}}>{{d.label}}</label>
+                <input class="form-control" [(ngModel)]="d.value" id="{{d.label + 'Input'}}" placeholder="{{'Enter ' + d.label}}" name="{{d.label}}">
+            </div>
+
+            <div *ngIf="d.type == 1" class="form-group mb-3">
+                <label for="{{d.label}}">{{d.label}}</label>
+                            <div class="form-check">
+                    <input class="form-check-input big-checkbox" type="checkbox" value="" id="flexCheckDefault" [checked]="d.value" (click)="toggleValue(d)">
+                    <label class="form-check-label" for="flexCheckDefault">
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <button type="submit" class="btn btn-primary" (click)="addFunctionClosePopup()">Submit</button>
+    </form>
+
+
+</div>

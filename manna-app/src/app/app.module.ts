@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchPipe } from './nav/address-page/search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule} from '@angular/material/dialog';
-import { AddAddressComponent } from './nav/address-page/address-table/add-address/add-address.component';
+import { AddPopupComponent } from './add-popup/add-popup.component';
 import { AddressValEditComponent } from './nav/address-page/address-table/address-popup/address-val-edit/address-val-edit.component';
 import { DriverPageComponent } from './nav/driver-page/driver-page.component';
 import { DriverTableComponent } from './nav/driver-page/driver-table/driver-table.component';
@@ -27,7 +27,7 @@ import { DriverTableComponent } from './nav/driver-page/driver-table/driver-tabl
     AddressTableComponent,
     AddressPopupComponent,
     SearchPipe,
-    AddAddressComponent,
+    AddPopupComponent,
     AddressValEditComponent,
     DriverPageComponent,
     DriverTableComponent,
