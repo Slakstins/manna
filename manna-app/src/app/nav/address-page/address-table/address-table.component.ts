@@ -104,6 +104,9 @@ export class AddressTableComponent implements OnInit, OnDestroy {
     this.sub = this.addressAPI.post(a).subscribe((res) => {
       console.log("successfully added");
       this.addresses.push(res as Address);
+      const myClonedArray: Address[] = [];
+      this.addresses.forEach(val => myClonedArray.push(Object.assign({}, val)));
+      this.addresses = myClonedArray;
       dialogRef.close();
     },
     (error) => {
