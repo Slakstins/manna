@@ -11,7 +11,7 @@ import { AddPopupFormat, InputType } from './add-popup-format';
   styleUrls: ['../nav/shared-styles/add-row.component.css']
 })
 export class AddPopupComponent implements OnInit{
-constructor(public dialogRef: MatDialogRef<AddPopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private addressAPI: AddressAPIService) {}
+constructor(public dialogRef: MatDialogRef<AddPopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
   ngOnInit(): void {
     console.log(this.dataFieldsObj)
   }

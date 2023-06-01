@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddressValEditComponent } from './address-val-edit.component';
+import { RowPopupComponent } from './row-popup.component';
 
-describe('AddressValEditComponent', () => {
-  let component: AddressValEditComponent;
-  let fixture: ComponentFixture<AddressValEditComponent>;
+describe('AddressPopupComponent', () => {
+  let component: RowPopupComponent;
+  let fixture: ComponentFixture<RowPopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddressValEditComponent ]
+      declarations: [ RowPopupComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddressValEditComponent);
+    fixture = TestBed.createComponent(RowPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

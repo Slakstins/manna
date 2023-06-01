@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Address } from 'src/app/interfaces/address';
 import { AddressAPIService } from 'src/app/api-services/addressapi.service';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AddressPopupComponent } from './address-popup/address-popup.component';
+import { RowPopupComponent } from '../../../address-popup/row-popup.component';
 import { AddPopupComponent } from '../../../add-popup/add-popup.component';
 import { AddPopupFormat, InputType } from 'src/app/add-popup/add-popup-format';
 
@@ -63,8 +63,11 @@ export class AddressTableComponent implements OnInit, OnDestroy {
 
   displayRowData(address: Address) {
     console.log(address);
-    let dialogRef = this.dialog.open(AddressPopupComponent, {
-      data: address,
+    let dialogRef = this.dialog.open(RowPopupComponent, {
+      data: {
+        "model": address,
+        "API": this.addressAPI
+      },
     });
     const sub = dialogRef.componentInstance.onDel.subscribe((id) => {
       this.removeAddressTableData(id);
