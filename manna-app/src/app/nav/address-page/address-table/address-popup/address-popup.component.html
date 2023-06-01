@@ -8,33 +8,13 @@
                 More
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-
-
-
                 <li (click)="deleteClicked()" role="button">Delete</li>
             </ul>
         </div>
     </div>
 
-
-    <!-- doesn't work :( -->
-    <!-- <div *ngFor="let field of valEditComponentLabels">
-        <app-address-val-edit [value]="data[field]" [label]="field" [id]="this.data._id" (edit)="data[field] = ($event)"></app-address-val-edit>
-    </div> -->
-
-
-
-    <div class="addressValEdit ul">
-        <app-address-val-edit [value]="data.name" [label]="'name'" [id]="this.data._id" (edit)="data.name = ($event)"></app-address-val-edit>
-    </div>
-    <div class="addressValEdit ul">
-        <app-address-val-edit [value]="data.address" [label]="'address'" [id]="this.data._id" (edit)="data.address = ($event)"></app-address-val-edit>
-    </div>
-    <div class="addressValEdit ul">
-        <app-address-val-edit [value]="data.phone" [label]="'phone'" [id]="this.data._id" (edit)="data.phone = ($event)"></app-address-val-edit>
-    </div>
-    <div class="addressValEdit ul">
-        <app-address-val-edit [value]="data.notes" [label]="'notes'" [id]="this.data._id" (edit)="data.notes = ($event)"></app-address-val-edit>
+    <div *ngFor="let field of valEditComponentLabels" class="addressValEdit ul">
+        <app-address-val-edit [value]="data[field]" [label]="field" [id]="this.data._id" (edit)="setAddrField(field, ($event))"></app-address-val-edit>
     </div>
 
     <div class="row">

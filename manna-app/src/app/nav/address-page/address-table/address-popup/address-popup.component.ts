@@ -20,22 +20,12 @@ export class AddressPopupComponent implements OnDestroy{
   editName = false;
   nameTemp = this.data.name;
 
-//   valEditComponentLabels: (keyof Address)[] = ["address" as keyof Address,
-// "name" as keyof Address, "phone" as keyof Address, "notes" as keyof Address];
+  valEditComponentLabels: (keyof Address)[] = ["address" as keyof Address,
+"name" as keyof Address, "phone" as keyof Address, "notes" as keyof Address];
 
-
-  updateNotes() {
-    this.sub = this.addressAPI.setField(this.notesTemp, this.data._id, "notes").subscribe((_res: any) => {
-      this.data.notes = this.notesTemp;
-      this.dialogRef.close();
-    },
-    (error: any) => {
-      console.log(error);
-    });
+  setAddrField (field: string, val: any) {
+    (this.data as any)[field] = val;
   }
-
-
-
 
 
   toggleDelivery() {
@@ -54,7 +44,6 @@ export class AddressPopupComponent implements OnDestroy{
       this.deleteDelivery();
     }
   }
-
 
   deleteDelivery() {
     this.sub = this.addressAPI.delete(this.data._id).subscribe((res) => {
