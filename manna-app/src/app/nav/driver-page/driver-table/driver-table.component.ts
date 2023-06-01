@@ -12,7 +12,7 @@ import { Driver } from 'src/app/interfaces/driver';
   styleUrls: ['../../shared-styles/table.component.css']
 })
 export class DriverTableComponent {
-  constructor(private driverAPI: DriverAPIService, public dialog: MatDialog, private changeDetection: ChangeDetectorRef){}
+  constructor(private driverAPI: DriverAPIService, public dialog: MatDialog){}
 
   options = [{ description: "any", id: 0 }, { description: "name", id: 1 }, { description: "phone", id: 2 },{ description: "notes", id: 3 }
   ];
@@ -59,17 +59,9 @@ export class DriverTableComponent {
     this.sub = this.driverAPI.post(driver).subscribe((res) => {
       console.log("successfully added");
       console.log(this.drivers);
+      //push does not result in change detection here, use spread instead
+      this.drivers = [...this.drivers, res as Driver];
       dialogRef.close();
-      this.drivers.push(res as Driver);
-      //need a better way to do this, but this works currently.
-      //does not trigger table to update bc of passed function unless
-      //reference changes for Driver[]
-
-      const myClonedArray: Driver[] = [];
-      this.drivers.forEach(val => myClonedArray.push(Object.assign({}, val)));
-      this.drivers = myClonedArray;
-      this.changeDetection.detectChanges();
-
     },
     (error) => {
       console.log(error);

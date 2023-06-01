@@ -104,9 +104,11 @@ export class AddressTableComponent implements OnInit, OnDestroy {
     this.sub = this.addressAPI.post(a).subscribe((res) => {
       console.log("successfully added");
       this.addresses.push(res as Address);
-      const myClonedArray: Address[] = [];
-      this.addresses.forEach(val => myClonedArray.push(Object.assign({}, val)));
-      this.addresses = myClonedArray;
+      //need a better way to do this, but this works currently.
+      //does not trigger table to update bc of passed function unless
+      //reference changes for Address[]
+
+      this.addresses = [...this.addresses, res as Address];
       dialogRef.close();
     },
     (error) => {
