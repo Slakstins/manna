@@ -5,6 +5,7 @@ import { AddPopupFormat, InputType } from 'src/app/add-popup/add-popup-format';
 import { AddPopupComponent } from 'src/app/add-popup/add-popup.component';
 import { DriverAPIService } from 'src/app/api-services/driverapi.service';
 import { Driver } from 'src/app/interfaces/driver';
+import { RowPopupComponent } from 'src/app/row-popup/row-popup.component';
 
 @Component({
   selector: 'app-driver-table',
@@ -39,6 +40,8 @@ export class DriverTableComponent {
       })
 
   }
+
+
   drivers!: Driver[];
 
   displayAddDriver() {
@@ -77,24 +80,28 @@ export class DriverTableComponent {
     this.drivers.push(driver);
   }
 
+
+  displayRowData(driver: Driver) {
+    let dialogRef = this.dialog.open(RowPopupComponent, {
+      data: {
+        "model": driver,
+        "API": this.driverAPI,
+        "confs": this.valEditComponentConfs
+      },
+    });
+    const sub = dialogRef.componentInstance.onDel.subscribe((id) => {
+      this.removeDriverTableData(id);
+      // do something
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      sub.unsubscribe();
+    });
+  }
+
   removeDriverTableData(id: string){
     this.drivers = this.drivers.filter((driver) => {
       return driver._id != id;
     })
-  }
-
-  displayRowData(driver: Driver) {
-    // console.log(driver);
-    // let dialogRef = this.dialog.open(DriverPopupComponent, {
-    //   data: driver,
-    // });
-    // const sub = dialogRef.componentInstance.onDel.subscribe((id) => {
-    //   this.removeDriverTableData(id);
-    //   // do something
-    // });
-    // dialogRef.afterClosed().subscribe(() => {
-    //   sub.unsubscribe();
-    // });
   }
 
   prevPage() {
@@ -139,4 +146,14 @@ export class DriverTableComponent {
     },
 ]
 
+  valEditComponentConfs: any[] = [
+    {label: "name",
+    type: "string"},
+    {label: "phone",
+    type: "string"},
+    {label: "notes",
+    type: "string"},
+    {label: "driving",
+    type: "check"},
+  ]
 }

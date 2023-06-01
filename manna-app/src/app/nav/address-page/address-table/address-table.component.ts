@@ -66,7 +66,8 @@ export class AddressTableComponent implements OnInit, OnDestroy {
     let dialogRef = this.dialog.open(RowPopupComponent, {
       data: {
         "model": address,
-        "API": this.addressAPI
+        "API": this.addressAPI,
+        "confs": this.valEditComponentConfs
       },
     });
     const sub = dialogRef.componentInstance.onDel.subscribe((id) => {
@@ -148,5 +149,18 @@ export class AddressTableComponent implements OnInit, OnDestroy {
     value: false
     },
 ]
+
+  valEditComponentConfs: any[] = [
+    {label: "address",
+    type: "string"},
+    {label: "name",
+    type: "string"},
+    {label: "phone",
+    type: "string"},
+    {label: "notes",
+    type: "string"},
+    {label: "delivery",
+    type: "check"},
+  ]
 
 }

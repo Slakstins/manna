@@ -21,9 +21,9 @@ export class AddressValEditComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.tempValue = this.value;
     //empty strings are falsey. Thank you js
-    if (typeof(this.value) == "string" && this.value == ""){
-      this.value = "no notes";
-    }
+    // if (typeof(this.value) == "string" && this.value == ""){
+    //   this.value = "no notes";
+    // }
   }
   @Input()
   label!: string;

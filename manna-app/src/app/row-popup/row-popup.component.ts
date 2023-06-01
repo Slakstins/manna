@@ -23,18 +23,7 @@ export class RowPopupComponent implements OnDestroy {
   // valEditComponentLabels: Object[] = ["address",
     // "name", "phone", "notes"];
 
-  valEditComponentConfs: any[] = [
-    {label: "address",
-    type: "string"},
-    {label: "name",
-    type: "string"},
-    {label: "phone",
-    type: "string"},
-    {label: "notes",
-    type: "string"},
-    {label: "delivery",
-    type: "check"},
-  ]
+
   setAddrField(field: string, val: any) {
     (this.data.model as any)[field] = val;
   }

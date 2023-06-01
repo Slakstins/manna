@@ -13,21 +13,8 @@
         </div>
     </div>
 
-    <div *ngFor="let conf of valEditComponentConfs" class="addressValEdit ul">
+    <div *ngFor="let conf of data.confs" class="addressValEdit ul">
         <app-row-val-edit [API]="data.API" [value]="data.model[conf.label]" [type]="conf.type" [label]="conf.label" [id]="this.data.model._id" (edit)="setAddrField(conf.label, ($event))"></app-row-val-edit>
     </div>
-<!-- 
-    <div class="row">
-        <div class="col-4 addressValEdit">
-            delivery:
-        </div>
-        <div class="col-6">
-            <div class="form-check">
-                <input class="form-check-input big-checkbox" type="checkbox" value="" id="flexCheckDefault" [checked]="data.delivery" (click)="toggleValue('delivery')">
-                <label class="form-check-label" for="flexCheckDefault">
-                </label>
-            </div>
 
-        </div>
-    </div> -->
 </div>
