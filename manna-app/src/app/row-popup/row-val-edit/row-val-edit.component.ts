@@ -5,7 +5,7 @@ import { AddressAPIService } from 'src/app/api-services/addressapi.service';
 import { HttpSetFuncs } from 'src/app/http-set-funcs';
 
 @Component({
-  selector: 'app-address-val-edit',
+  selector: 'app-row-val-edit',
   templateUrl: './row-val-edit.component.html',
   styleUrls: ['./row-val-edit.component.css']
 })

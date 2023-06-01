@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Address } from 'src/app/interfaces/address';
 import { AddressAPIService } from 'src/app/api-services/addressapi.service';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { RowPopupComponent } from '../../../address-popup/row-popup.component';
+import { RowPopupComponent } from '../../../row-popup/row-popup.component';
 import { AddPopupComponent } from '../../../add-popup/add-popup.component';
 import { AddPopupFormat, InputType } from 'src/app/add-popup/add-popup-format';
 
@@ -106,11 +106,6 @@ export class AddressTableComponent implements OnInit, OnDestroy {
     //call api
     this.sub = this.addressAPI.post(a).subscribe((res) => {
       console.log("successfully added");
-      this.addresses.push(res as Address);
-      //need a better way to do this, but this works currently.
-      //does not trigger table to update bc of passed function unless
-      //reference changes for Address[]
-
       this.addresses = [...this.addresses, res as Address];
       dialogRef.close();
     },

@@ -14,7 +14,7 @@
     </div>
 
     <div *ngFor="let conf of valEditComponentConfs" class="addressValEdit ul">
-        <app-address-val-edit [API]="data.API" [value]="data.model[conf.label]" [type]="conf.type" [label]="conf.label" [id]="this.data.model._id" (edit)="setAddrField(conf.label, ($event))"></app-address-val-edit>
+        <app-row-val-edit [API]="data.API" [value]="data.model[conf.label]" [type]="conf.type" [label]="conf.label" [id]="this.data.model._id" (edit)="setAddrField(conf.label, ($event))"></app-row-val-edit>
     </div>
 <!-- 
     <div class="row">
