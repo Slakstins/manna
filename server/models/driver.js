@@ -17,6 +17,10 @@ const DriverSchema = new mongoose.Schema({
   driving: {
     type: Boolean,
     required: false,
+  },
+  password: {
+    type: String,
+    required: true,
   }
 
 });

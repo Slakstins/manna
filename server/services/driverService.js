@@ -1,18 +1,19 @@
 
-var driverModel = require('./driverModel');
+var driverModel = require('./models/driver.js');
 var key = '123456789trytryrtyr';
 var encryptor = require('simple-encryptor')(key);
  
-module.exports.createStudentDBService = (driverDetails) => {
+module.exports.createDriverDBService = (driverDetails) => {
  
  
    return new Promise(function myFn(resolve, reject) {
  
        var driverModelData = new driverModel();
  
-       driverModelData.firstname = driverDetails.firstname;
-       driverModelData.lastname = driverDetails.lastname;
-       driverModelData.email = driverDetails.email;
+       driverModelData.phone = driverDetails.phone;
+       driverModelData.name = driverDetails.name;
+       driverModelData.notes = driverDetails.notes;
+       driverModelData.driving = driverDetails.driving;
        driverModelData.password = driverDetails.password;
        var encrypted = encryptor.encrypt(driverDetails.password);
        driverModelData.password = encrypted;
@@ -48,16 +49,16 @@ module.exports.loginuserDBService = (driverDetails)=>
  
                if(decrypted== driverDetails.password)
                {
-                  resolve({status: true,msg: "Student Validated Successfully"});
+                  resolve({status: true,msg: "Driver Validated Successfully"});
                }
                else
                {
-                  reject({status: false,msg: "Student Validated failed"});
+                  reject({status: false,msg: "Driver Validated failed"});
                }
             }
             else
             {
-               reject({status: false,msg: "Student Error Detailssss"});
+               reject({status: false,msg: "Driver Error Detailssss"});
             }
  
          }

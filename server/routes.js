@@ -1,6 +1,7 @@
 const express = require("express");
 const AddressModel = require("./models/address");
 const DriverModel = require("./models/driver");
+const DriverController = require("./controllers/driverController");
 const req = require("express/lib/request");
 const app = express();
 
@@ -193,6 +194,8 @@ app.get("/driver/all", async (request, response) => {
   }
 });
 
+app.route("/loginPage/login.component").post(DriverController.loginUserControllerFn);
+app.route("/loginPage/register.component").post(DriverController.createDriverControllerFn);
 
 
 
