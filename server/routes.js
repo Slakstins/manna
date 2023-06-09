@@ -1,9 +1,11 @@
 const express = require("express");
 const AddressModel = require("./models/address");
 const DriverModel = require("./models/driver");
-const DriverController = require("./controllers/driverController");
+const DriverAccountModel = require("./models/driverAccount");
 const req = require("express/lib/request");
 const app = express();
+var key = '123456789trytryrtyr';
+var encryptor = require('simple-encryptor')(key);
 
 app.post("/address", async (request, response) => {
     const address = new AddressModel(request.body);
@@ -103,7 +105,9 @@ app.get("/address/all", async (request, response) => {
 
 app.post("/driver", async (request, response) => {
     const driver = new DriverModel(request.body);
-  
+    // if (request.body.password){
+    //   driver.password = encryptor.encrypt(request.body.password);
+    // }
     try {
       await driver.save();
       response.send(driver);
@@ -111,6 +115,40 @@ app.post("/driver", async (request, response) => {
       response.status(500).send(error);
     }
 });
+
+
+
+app.post("/driverAccount", async (request, response) => {
+    const driverAccount = new DriverAccountModel(request.body);
+    if (request.body.password){
+      driverAccount.password = encryptor.encrypt(request.body.password);
+      driverAccount.email = request.body.email;
+    }
+    try {
+      await driverAccount.save();
+      response.send(driverAccount);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+});
+
+
+app.post("/driverAccount/login", async (request, response) => {
+    const driverAccount = await DriverAccountModel.findOne({ email: request.body.email });
+    if (!driverAccount){
+      response.status(402).send({message: "no driver account with email: " + request.body.email});
+      return;
+    }
+    var decrypted = encryptor.decrypt(driverAccount.password);
+    if (decrypted == request.body.password){
+      response.status(200).send({message: "login successful"});
+      return;
+    }
+    else {
+      response.status(401).send({message: "wrong password"});
+    }
+});
+
 
 app.patch("/driver/(:id)/setDriving", async (req, res) => {
     try {
@@ -194,8 +232,6 @@ app.get("/driver/all", async (request, response) => {
   }
 });
 
-app.route("/loginPage/login.component").post(DriverController.loginUserControllerFn);
-app.route("/loginPage/register.component").post(DriverController.createDriverControllerFn);
 
 
 

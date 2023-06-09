@@ -1,4 +1,5 @@
 add receiving delivery as a drop down to affect search results
+need to have drivers AND driver accounts
 
 Manage drivers
   Drivers can indicate whether they are delivering food in the coming week

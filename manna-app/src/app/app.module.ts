@@ -16,6 +16,8 @@ import { AddAddressComponent } from './nav/address-page/address-table/add-addres
 import { AddressValEditComponent } from './nav/address-page/address-table/address-popup/address-val-edit/address-val-edit.component';
 import { DriverPageComponent } from './nav/driver-page/driver-page.component';
 import { DriverTableComponent } from './nav/driver-page/driver-table/driver-table.component';
+import { LoginComponent } from './loginPage/login.component';
+import { RegisterComponent } from './loginPage/register.component';
 
 
 
@@ -31,6 +33,8 @@ import { DriverTableComponent } from './nav/driver-page/driver-table/driver-tabl
     AddressValEditComponent,
     DriverPageComponent,
     DriverTableComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     HttpClientModule,

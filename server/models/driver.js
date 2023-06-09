@@ -18,11 +18,6 @@ const DriverSchema = new mongoose.Schema({
     type: Boolean,
     required: false,
   },
-  password: {
-    type: String,
-    required: true,
-  }
-
 });
 
 const DriverModel = mongoose.model("Driver", DriverSchema);
