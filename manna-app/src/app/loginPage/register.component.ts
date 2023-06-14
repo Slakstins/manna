@@ -1,45 +1,44 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
- 
+import { DriverAccountAPIService } from '../api-services/driver-account-api.service';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   // styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
- 
-  firstname: string ="";
-  lastname: string ="";
-  email: string ="";
-  password: string ="";
- 
-  constructor(private http: HttpClient)
-  {
+
+  firstname: string = "";
+  lastname: string = "";
+  email: string = "";
+  password: string = "";
+  phone: string = "";
+
+  constructor(private http: HttpClient, private driverAccountService: DriverAccountAPIService) {
   }
- 
-  ngOnInit(): void
-  {
+
+  ngOnInit(): void {
   }
- 
-  register()
-  {
+
+  register() {
     let bodyData =
     {
-      "firstname" : this.firstname,
-      "lastname" : this.lastname,
-      "email" : this.email,
-      "password" : this.password,
+      "firstname": this.firstname,
+      "lastname": this.lastname,
+      "email": this.email,
+      "password": this.password,
     };
-    this.http.post("http://localhost:9992/student/create",bodyData).subscribe((resultData: any)=>
-    {
-        console.log(resultData);
-        alert("Student Registered Successfully")
-    });
+    this.driverAccountService.post(bodyData).subscribe(
+      (res) => {
+        console.log("success");
+      },
+      (error) => {
+        console.log(error);
+      }
+
+    )
+
   }
- 
-  save()
-  {
-    this.register();
-  }
- 
+
 }

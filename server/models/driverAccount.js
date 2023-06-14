@@ -9,6 +9,10 @@ const DriverAccountSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  moderator: {
+    type: Boolean,
+    required: true
   }
 
 });

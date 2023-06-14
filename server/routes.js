@@ -7,7 +7,7 @@ const app = express();
 var key = '123456789trytryrtyr';
 var encryptor = require('simple-encryptor')(key);
 
-app.post("/address", async (request, response) => {
+app.post("/api/address", async (request, response) => {
     const address = new AddressModel(request.body);
   
     try {
@@ -18,7 +18,7 @@ app.post("/address", async (request, response) => {
     }
 });
 
-app.patch("/address/(:id)/setDelivery", async (req, res) => {
+app.patch("/api/address/(:id)/setDelivery", async (req, res) => {
     try {
       addr = await AddressModel.findById(req.params.id);
       if (addr == null){
@@ -32,7 +32,7 @@ app.patch("/address/(:id)/setDelivery", async (req, res) => {
     }
 });
 
-app.patch("/address/(:id)/setNotes", async (req, res) => {
+app.patch("/api/address/(:id)/setNotes", async (req, res) => {
     try {
       addr = await AddressModel.findById(req.params.id);
       if (addr == null){
@@ -46,7 +46,7 @@ app.patch("/address/(:id)/setNotes", async (req, res) => {
     }
 });
 
-app.patch("/address/setDeliveriesFalse", async (req, res) => {
+app.patch("/api/address/setDeliveriesFalse", async (req, res) => {
     try {
       field = req.params.field;
       await AddressModel.updateMany({delivery: true}, {$set: {delivery: false}});
@@ -57,7 +57,7 @@ app.patch("/address/setDeliveriesFalse", async (req, res) => {
     }
 });
 
-app.patch("/address/(:id)/set/(:field)", async (req, res) => {
+app.patch("/api/address/(:id)/set/(:field)", async (req, res) => {
     try {
       field = req.params.field;
       addr = await AddressModel.findById(req.params.id);
@@ -72,7 +72,7 @@ app.patch("/address/(:id)/set/(:field)", async (req, res) => {
     }
 });
 
-app.delete('/address/(:id)', async (req, res) => {
+app.delete('/api/address/(:id)', async (req, res) => {
     try {
       msg = await AddressModel.findByIdAndRemove(req.params.id);
       if (msg == null){
@@ -87,7 +87,7 @@ app.delete('/address/(:id)', async (req, res) => {
 
 
 
-app.get("/address/all", async (request, response) => {
+app.get("/api/address/all", async (request, response) => {
   const addresses = await AddressModel.find({});
 
   // perfs.sort(function(a, b) {
@@ -103,7 +103,7 @@ app.get("/address/all", async (request, response) => {
 
 
 
-app.post("/driver", async (request, response) => {
+app.post("/api/driver", async (request, response) => {
     const driver = new DriverModel(request.body);
     // if (request.body.password){
     //   driver.password = encryptor.encrypt(request.body.password);
@@ -118,11 +118,12 @@ app.post("/driver", async (request, response) => {
 
 
 
-app.post("/driverAccount", async (request, response) => {
+app.post("/api/driverAccount", async (request, response) => {
     const driverAccount = new DriverAccountModel(request.body);
     if (request.body.password){
       driverAccount.password = encryptor.encrypt(request.body.password);
       driverAccount.email = request.body.email;
+      driverAccount.moderator = false;
     }
     try {
       await driverAccount.save();
@@ -133,7 +134,7 @@ app.post("/driverAccount", async (request, response) => {
 });
 
 
-app.post("/driverAccount/login", async (request, response) => {
+app.post("/api/driverAccount/login", async (request, response) => {
     const driverAccount = await DriverAccountModel.findOne({ email: request.body.email });
     if (!driverAccount){
       response.status(402).send({message: "no driver account with email: " + request.body.email});
@@ -150,7 +151,7 @@ app.post("/driverAccount/login", async (request, response) => {
 });
 
 
-app.patch("/driver/(:id)/setDriving", async (req, res) => {
+app.patch("/api/driver/(:id)/setDriving", async (req, res) => {
     try {
       driver = await DriverModel.findById(req.params.id);
       if (driver == null){
@@ -164,7 +165,7 @@ app.patch("/driver/(:id)/setDriving", async (req, res) => {
     }
 });
 
-app.patch("/driver/(:id)/setNotes", async (req, res) => {
+app.patch("/api/driver/(:id)/setNotes", async (req, res) => {
     try {
       driver = await DriverModel.findById(req.params.id);
       if (driver == null){
@@ -178,7 +179,7 @@ app.patch("/driver/(:id)/setNotes", async (req, res) => {
     }
 });
 
-app.patch("/driver/setDrivingValsFalse", async (req, res) => {
+app.patch("/api/driver/setDrivingValsFalse", async (req, res) => {
     try {
       field = req.params.field;
       await DriverModel.updateMany({driving: true}, {$set: {driving: false}});
@@ -189,7 +190,7 @@ app.patch("/driver/setDrivingValsFalse", async (req, res) => {
     }
 });
 
-app.patch("/driver/(:id)/set/(:field)", async (req, res) => {
+app.patch("/api/driver/(:id)/set/(:field)", async (req, res) => {
     try {
       field = req.params.field;
       driver = await DriverModel.findById(req.params.id);
@@ -204,7 +205,7 @@ app.patch("/driver/(:id)/set/(:field)", async (req, res) => {
     }
 });
 
-app.delete('/driver/(:id)', async (req, res) => {
+app.delete('/api/driver/(:id)', async (req, res) => {
     try {
       msg = await DriverModel.findByIdAndRemove(req.params.id);
       if (msg == null){
@@ -219,7 +220,7 @@ app.delete('/driver/(:id)', async (req, res) => {
 
 
 
-app.get("/driver/all", async (request, response) => {
+app.get("/api/driver/all", async (request, response) => {
   const drivers = await DriverModel.find({});
   // perfs.sort(function(a, b) {
     // return (a.date < b.date) ? -1 : ((a.date > b.date) ? 1 : 0);

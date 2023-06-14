@@ -3,11 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddressPageComponent } from './nav/address-page/address-page.component';
 import { DriverPageComponent } from './nav/driver-page/driver-page.component';
 import { RegisterComponent } from './loginPage/register.component';
+import { LoginComponent } from './loginPage/login.component';
 
 const routes: Routes = [
     {path:'', redirectTo:"addresses", pathMatch:"full"},
     // {path: "addresses", component: AddressPageComponent},
-    {path: "addresses", component: RegisterComponent},
+    {path: "addresses", component: LoginComponent},
     {path: "drivers", component: DriverPageComponent},
 ];
 
