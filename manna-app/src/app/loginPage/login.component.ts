@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DriverAccountAPIService } from '../api-services/driver-account-api.service';
+import { AuthService } from './auth.service';
+import { DriverAccount } from '../interfaces/driver-account';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   // styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   email: string = '';
   password: string = '';
@@ -16,7 +18,12 @@ export class LoginComponent {
   isLogin: boolean = true;
   erroMessage: string = "";
 
-  constructor(private router: Router, private http: HttpClient, private driverAccountService: DriverAccountAPIService) { }
+  constructor(private auth: AuthService, private driverAccountService: DriverAccountAPIService) { }
+  ngOnInit(): void {
+    if(this.auth.isSignedIn()) {
+      this.auth.goHome();
+    }
+  }
 
   login() {
     console.log(this.email);
@@ -29,6 +36,8 @@ export class LoginComponent {
 
       this.driverAccountService.login(bodyData).subscribe(
         (res) => {
+          //redirect to home page based on Moderator value. Auth level should be returned in res
+          this.auth.login(res as DriverAccount);
           console.log("success");
         },
         (error) => {

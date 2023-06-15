@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DriverAccountAPIService } from '../api-services/driver-account-api.service';
+import { AuthService } from './auth.service';
+import { DriverAccount } from '../interfaces/driver-account';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   // styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
 
   firstname: string = "";
   lastname: string = "";
@@ -15,10 +17,13 @@ export class RegisterComponent {
   password: string = "";
   phone: string = "";
 
-  constructor(private http: HttpClient, private driverAccountService: DriverAccountAPIService) {
+  constructor(private auth: AuthService, private driverAccountService: DriverAccountAPIService) {
   }
 
   ngOnInit(): void {
+    if (this.auth.isSignedIn()){
+      this.auth.goHome();
+    }
   }
 
   register() {
@@ -31,7 +36,8 @@ export class RegisterComponent {
     };
     this.driverAccountService.post(bodyData).subscribe(
       (res) => {
-        console.log("success");
+        //redirect to driver homepage
+        this.auth.login(res as DriverAccount);
       },
       (error) => {
         console.log(error);

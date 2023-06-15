@@ -142,7 +142,7 @@ app.post("/api/driverAccount/login", async (request, response) => {
     }
     var decrypted = encryptor.decrypt(driverAccount.password);
     if (decrypted == request.body.password){
-      response.status(200).send({message: "login successful"});
+      response.status(200).send(driverAccount);
       return;
     }
     else {
