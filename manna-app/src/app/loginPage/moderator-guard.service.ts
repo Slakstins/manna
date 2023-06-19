@@ -8,12 +8,12 @@ import { AuthService } from './auth.service';
 export class ModeratorGuardService {
 
   constructor(private auth: AuthService, private router: Router) { }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    // if (this.auth.isModerator()) {
+  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    if (this.auth.hasSignedIn() && await this.auth.isModerator()) {
       return true;
-  //   } else {
-  //     this.router.navigate(['/driver-home']);
-  //     return false;
-  //   }
+    } else {
+      this.router.navigate(['/driver-home']);
+      return false;
+    }
   }
 }

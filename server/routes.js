@@ -52,7 +52,6 @@ app.patch("/api/address/setDeliveriesFalse", async (req, res) => {
       await AddressModel.updateMany({delivery: true}, {$set: {delivery: false}});
       res.send({message: "deliveries set to false"});
     } catch (error) {
-      console.log(error)
       res.status(500).send(error);
     }
 });
@@ -150,10 +149,10 @@ app.post("/api/driverAccount/login", async (request, response) => {
     }
 });
 
-app.get("/api/driverAccount/isModerator", async (request, response) => {
-    const driverAccount = await DriverAccountModel.findOne({ email: request.body.email });
+app.get("/api/driverAccount/isModerator/(:email)", async (request, response) => {
+    const driverAccount = await DriverAccountModel.findOne({ email: request.params.email });
     if (!driverAccount){
-      response.status(402).send({message: "no driver account with email: " + request.body.email});
+      response.status(402).send({message: "no driver account with email: " + request.params.email});
       return;
     }
     response.status(200).send({"isModerator": driverAccount.moderator});
@@ -196,7 +195,6 @@ app.patch("/api/driver/setDrivingValsFalse", async (req, res) => {
       await DriverModel.updateMany({driving: true}, {$set: {driving: false}});
       res.send({message: "driving vals set to false"});
     } catch (error) {
-      console.log(error)
       res.status(500).send(error);
     }
 });

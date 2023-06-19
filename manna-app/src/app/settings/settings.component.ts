@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../loginPage/auth.service';
-import { DriverAPIService } from '../api-services/driverapi.service';
 
 @Component({
   selector: 'app-settings',

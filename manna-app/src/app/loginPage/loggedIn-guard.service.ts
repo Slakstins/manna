@@ -14,6 +14,7 @@ export class LoggedInGuardService {
     if (this.auth.hasSignedIn()) {
       let email = localStorage.getItem("email");
       let password = localStorage.getItem("password");
+      console.log(password);
       let driverAccount = {
         email: email,
         password: password,

@@ -27,6 +27,7 @@ export class AuthService {
   }
 
   async isModerator() {
+    console.log("calling is moderator");
     return await this.accountAPI.isModerator(localStorage.getItem("email")).toPromise().then((res) => {
       return (res as isModeratorRes).isModerator;
 
@@ -43,7 +44,7 @@ export class AuthService {
     // if (!this.isSignedIn()){
       // throw new Error("cannot go home. account undefined");
     // }
-    if (await this.isModerator()){
+    if (await this.isModerator().then((res) => {console.log(res); return res})){
       console.log("is moderator")
       this.router.navigate(['/addresses']);
     }
