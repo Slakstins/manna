@@ -28,7 +28,6 @@ export class LoggedInGuardService {
 
       return success;
     } else {
-      alert('Please log in')
       this.router.navigate(['/login']);
       return false;
     }

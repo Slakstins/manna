@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit{
     this.driverAccountService.post(bodyData).subscribe(
       (res) => {
         //redirect to driver homepage
+        (res as DriverAccount).password = bodyData.password;
         this.auth.login(res as DriverAccount);
       },
       (error) => {

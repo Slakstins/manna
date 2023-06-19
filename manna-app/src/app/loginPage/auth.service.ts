@@ -5,7 +5,7 @@ import { Driver } from '../interfaces/driver';
 import { DriverAccountAPIService } from '../api-services/driver-account-api.service';
 
 interface isModeratorRes{
-  isModerator: string;
+  isModerator: boolean;
 }
 
 @Injectable({

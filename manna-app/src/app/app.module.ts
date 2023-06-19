@@ -20,6 +20,7 @@ import { LoginComponent } from './loginPage/login.component';
 import { RegisterComponent } from './loginPage/register.component';
 import { DriverHomeComponent } from './driver-home/driver-home.component';
 import { SettingsComponent } from './settings/settings.component';
+import { DriverNavComponent } from './driver-nav/driver-nav.component';
 
 
 
@@ -38,7 +39,8 @@ import { SettingsComponent } from './settings/settings.component';
     LoginComponent,
     RegisterComponent,
     DriverHomeComponent,
-    SettingsComponent
+    SettingsComponent,
+    DriverNavComponent
   ],
   imports: [
     HttpClientModule,
