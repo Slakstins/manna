@@ -7,14 +7,16 @@ import { LoginComponent } from './loginPage/login.component';
 import { DriverHomeComponent } from './driver-home/driver-home.component';
 import { LoggedInGuardService } from './loginPage/loggedIn-guard.service';
 import { ModeratorGuardService } from './loginPage/moderator-guard.service';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
-    {path:'', redirectTo:"login", pathMatch:"full"},
+    {path:'', redirectTo:"addresses", pathMatch:"full"},
     {path:'login', component: LoginComponent},
     {path:'register', component: RegisterComponent},
     {path: "driver-home", component: DriverHomeComponent, canActivate: [LoggedInGuardService]},
     {path: "addresses", component: AddressPageComponent, canActivate: [ModeratorGuardService]},
     {path: "drivers", component: DriverPageComponent, canActivate: [ModeratorGuardService]},
+    {path: "settings", component: SettingsComponent, canActivate: [LoggedInGuardService]},
 ];
 
 @NgModule({

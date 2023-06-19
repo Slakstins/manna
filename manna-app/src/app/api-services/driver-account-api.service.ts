@@ -27,6 +27,10 @@ export class DriverAccountAPIService {
     return this.http.post(this.url + "driverAccount/login", data);
   }
 
+  public isModerator(data: any) {
+    return this.http.post(this.url + "driverAccount/login", {email: data});
+  }
+
 
   public post<DriverAccount>(data: DriverAccount) {
     return this.sharedAPIService.post<DriverAccount>(data, this.collection);

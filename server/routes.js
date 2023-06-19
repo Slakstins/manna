@@ -150,6 +150,17 @@ app.post("/api/driverAccount/login", async (request, response) => {
     }
 });
 
+app.get("/api/driverAccount/isModerator", async (request, response) => {
+    const driverAccount = await DriverAccountModel.findOne({ email: request.body.email });
+    if (!driverAccount){
+      response.status(402).send({message: "no driver account with email: " + request.body.email});
+      return;
+    }
+    response.status(200).send({"isModerator": driverAccount.moderator});
+});
+
+
+
 
 app.patch("/api/driver/(:id)/setDriving", async (req, res) => {
     try {

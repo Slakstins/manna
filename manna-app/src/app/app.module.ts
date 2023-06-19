@@ -19,6 +19,7 @@ import { DriverTableComponent } from './nav/driver-page/driver-table/driver-tabl
 import { LoginComponent } from './loginPage/login.component';
 import { RegisterComponent } from './loginPage/register.component';
 import { DriverHomeComponent } from './driver-home/driver-home.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 
@@ -36,7 +37,8 @@ import { DriverHomeComponent } from './driver-home/driver-home.component';
     DriverTableComponent,
     LoginComponent,
     RegisterComponent,
-    DriverHomeComponent
+    DriverHomeComponent,
+    SettingsComponent
   ],
   imports: [
     HttpClientModule,

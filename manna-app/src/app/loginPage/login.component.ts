@@ -20,9 +20,9 @@ export class LoginComponent implements OnInit{
 
   constructor(private auth: AuthService, private driverAccountService: DriverAccountAPIService) { }
   ngOnInit(): void {
-    if(this.auth.isSignedIn()) {
-      this.auth.goHome();
-    }
+    // if(this.auth.isSignedIn()) {
+    //   this.auth.goHome();
+    // }
   }
 
   login() {
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit{
       this.driverAccountService.login(bodyData).subscribe(
         (res) => {
           //redirect to home page based on Moderator value. Auth level should be returned in res
+          (res as DriverAccount).password = bodyData.password;
           this.auth.login(res as DriverAccount);
           console.log("success");
         },

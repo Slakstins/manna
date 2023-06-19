@@ -5,7 +5,12 @@
             aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-list"></i>
         </button>
+        <button class="navbar-toggler" type="button" [routerLink]="['/settings']"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-gear"></i>
+        </button>
     </div>
+
 </nav>
 <div class="collapse" id="navbarToggleExternalContent">
     <div class="bg-light shadow-3 p-4">
@@ -14,7 +19,7 @@
         <button [routerLink]="['/drivers']" class="btn btn-link btn-block border-bottom m-0" data-bs-toggle="collapse"
             data-bs-target="#navbarToggleExternalContent">Drivers</button>
 
-        <button type="button" style="display: block; margin-left: auto;" class="btn btn-danger" (click)="setDeliveriesFalse()">Clear Delivery Data</button>
+        <!-- <button type="button" style="display: block; margin-left: auto;" class="btn btn-danger" (click)="setDeliveriesFalse()">Clear Delivery Data</button> -->
     </div>
 
 </div>

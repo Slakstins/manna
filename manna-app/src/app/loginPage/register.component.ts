@@ -21,9 +21,9 @@ export class RegisterComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if (this.auth.isSignedIn()){
-      this.auth.goHome();
-    }
+    // if (this.auth.isSignedIn()){
+      // this.auth.goHome();
+    // }
   }
 
   register() {

@@ -1,9 +1,9 @@
 
 build driver homepage
-add logout button
 set nav buttons based on authorization
 do sessions?
-move clear delivery data out of nav
+
+
 
 
 

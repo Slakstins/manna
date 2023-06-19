@@ -9,12 +9,11 @@ export class ModeratorGuardService {
 
   constructor(private auth: AuthService, private router: Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.auth.isModerator()) {
+    // if (this.auth.isModerator()) {
       return true;
-    } else {
-      alert('not authorized')
-      this.router.navigate(['/login']);
-      return false;
-    }
+  //   } else {
+  //     this.router.navigate(['/driver-home']);
+  //     return false;
+  //   }
   }
 }
