@@ -10,7 +10,9 @@ import { Subscription } from 'rxjs';
 export class NavComponent implements OnDestroy {
   constructor(private addressAPI: AddressAPIService) { }
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    if (this.sub){
+      this.sub.unsubscribe();
+    }
   }
   sub!: Subscription;
 

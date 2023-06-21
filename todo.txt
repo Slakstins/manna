@@ -1,10 +1,8 @@
-add viewing driver row data
-extract page changer to its own component. could do the same with search field maybe
+build driver nav
+add link between driver data and driver account
+make driver delivery selection link up
+add data validation for registration fields (email should be email format, etc, phone number validation, email validation)
 
-
-
-
-add receiving delivery as a drop down to affect search results
 
 Manage drivers
   Drivers can indicate whether they are delivering food in the coming week

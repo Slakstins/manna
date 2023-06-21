@@ -16,6 +16,11 @@ import { AddPopupComponent } from './add-popup/add-popup.component';
 import { AddressValEditComponent } from './row-popup/row-val-edit/row-val-edit.component';
 import { DriverPageComponent } from './nav/driver-page/driver-page.component';
 import { DriverTableComponent } from './nav/driver-page/driver-table/driver-table.component';
+import { LoginComponent } from './loginPage/login.component';
+import { RegisterComponent } from './loginPage/register.component';
+import { DriverHomeComponent } from './driver-home/driver-home.component';
+import { SettingsComponent } from './settings/settings.component';
+import { DriverNavComponent } from './driver-nav/driver-nav.component';
 
 
 
@@ -31,6 +36,11 @@ import { DriverTableComponent } from './nav/driver-page/driver-table/driver-tabl
     AddressValEditComponent,
     DriverPageComponent,
     DriverTableComponent,
+    LoginComponent,
+    RegisterComponent,
+    DriverHomeComponent,
+    SettingsComponent,
+    DriverNavComponent
   ],
   imports: [
     HttpClientModule,

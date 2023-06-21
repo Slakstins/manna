@@ -17,8 +17,7 @@ const DriverSchema = new mongoose.Schema({
   driving: {
     type: Boolean,
     required: false,
-  }
-
+  },
 });
 
 const DriverModel = mongoose.model("Driver", DriverSchema);

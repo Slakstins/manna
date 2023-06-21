@@ -3,18 +3,19 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environment';
 import { SharedAPIService } from './sharedapi.service';
 import { Driver } from '../interfaces/driver';
+import { DriverAccount } from '../interfaces/driver-account';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DriverAPIService {
+export class DriverAccountAPIService {
   url = environment.baseUrl;
-  collection = "driver";
+  collection = "driverAccount";
   constructor(private http: HttpClient, private sharedAPIService: SharedAPIService) {
   } 
 
   public get() {
-    return this.sharedAPIService.get<Driver>(this.collection);
+    return this.sharedAPIService.get<DriverAccount>(this.collection);
   }
 
 
@@ -22,21 +23,20 @@ export class DriverAPIService {
     return this.sharedAPIService.setField(data, id, field, this.collection);
   }
 
-  public setDrivingValsFalse() {
-    return this.http.patch(this.url + "address/setDrivingValsFalse", {});
+  public login<DriverAccount>(data: DriverAccount) {
+    return this.http.post(this.url + "driverAccount/login", data);
   }
 
-  public postAccount<DriverAccount>(data: DriverAccount) {
-    return this.http.post(this.url + "driverAccount", data);
+  public isModerator(email: any) {
+    return this.http.get(this.url + "driverAccount/isModerator/" + email );
   }
 
-  public post<Driver>(data: Driver) {
-    return this.sharedAPIService.post<Driver>(data, this.collection);
+
+  public post<DriverAccount>(data: DriverAccount) {
+    return this.sharedAPIService.post<DriverAccount>(data, this.collection);
   }
 
   public delete(id: string) { 
     return this.sharedAPIService.delete(id, this.collection);
   } 
-
-
 }
