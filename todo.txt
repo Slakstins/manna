@@ -1,12 +1,7 @@
-
 build driver nav
 add link between driver data and driver account
 make driver delivery selection link up
 add data validation for registration fields (email should be email format, etc, phone number validation, email validation)
-
-
-
-
 
 
 Manage drivers

@@ -7,13 +7,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
 import { AddressPageComponent } from './nav/address-page/address-page.component';
 import { AddressTableComponent } from './nav/address-page/address-table/address-table.component';
-import { AddressPopupComponent } from './nav/address-page/address-table/address-popup/address-popup.component';
+import { RowPopupComponent } from './row-popup/row-popup.component';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from './nav/address-page/search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule} from '@angular/material/dialog';
-import { AddAddressComponent } from './nav/address-page/address-table/add-address/add-address.component';
-import { AddressValEditComponent } from './nav/address-page/address-table/address-popup/address-val-edit/address-val-edit.component';
+import { AddPopupComponent } from './add-popup/add-popup.component';
+import { AddressValEditComponent } from './row-popup/row-val-edit/row-val-edit.component';
 import { DriverPageComponent } from './nav/driver-page/driver-page.component';
 import { DriverTableComponent } from './nav/driver-page/driver-table/driver-table.component';
 import { LoginComponent } from './loginPage/login.component';
@@ -30,9 +30,9 @@ import { DriverNavComponent } from './driver-nav/driver-nav.component';
     NavComponent,
     AddressPageComponent,
     AddressTableComponent,
-    AddressPopupComponent,
+    RowPopupComponent,
     SearchPipe,
-    AddAddressComponent,
+    AddPopupComponent,
     AddressValEditComponent,
     DriverPageComponent,
     DriverTableComponent,

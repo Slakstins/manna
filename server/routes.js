@@ -67,6 +67,7 @@ app.patch("/api/address/(:id)/set/(:field)", async (req, res) => {
       await addr.save();
       res.send(addr);
     } catch (error) {
+      console.log(error);
       res.status(500).send(error);
     }
 });
