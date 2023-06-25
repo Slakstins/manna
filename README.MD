@@ -7,6 +7,7 @@ To run frontend for debugging:
 1. Start a terminal in the manna-app folder
 2. npm install
 3. ng serve
+4. http://localhost:4200/
 
 
 To run server for debugging:
@@ -17,12 +18,12 @@ To run server for debugging:
 To build frontend for distribution
 1. Start a terminal in the manna-app folder
 2. npm run build
-3. Alter server.js to include serving files from /dist folder
-4. Start a terminal in the server folder
-5. npm start
+3. Start a terminal in the server folder
+4. npm start
+5. http://localhost:3000/
 
 To build docker container
-1. Start a terminal in the server folder
+1. Start a terminal in the server folder on a system with docker
 2. docker build -t manna-app ./
 3. docker image tag manna-app registry.3.116vb.dns9.co/manna-app
 4. docker push registry.3.116vb.dns9.co/manna-app
