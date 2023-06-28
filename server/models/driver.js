@@ -18,6 +18,22 @@ const DriverSchema = new mongoose.Schema({
     type: Boolean,
     required: false,
   },
+  account: {
+    type: Object,
+    required: false,
+    email: {
+      type: String,
+      required: true
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    moderator: {
+      type: Boolean,
+      required: true
+    }
+  }
 });
 
 const DriverModel = mongoose.model("Driver", DriverSchema);

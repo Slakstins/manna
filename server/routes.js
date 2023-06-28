@@ -1,7 +1,6 @@
 const express = require("express");
 const AddressModel = require("./models/address");
 const DriverModel = require("./models/driver");
-const DriverAccountModel = require("./models/driverAccount");
 const req = require("express/lib/request");
 const app = express();
 var key = '123456789trytryrtyr';
@@ -119,15 +118,22 @@ app.post("/api/driver", async (request, response) => {
 
 
 app.post("/api/driverAccount", async (request, response) => {
-    const driverAccount = new DriverAccountModel(request.body);
+    const driver = new DriverModel(request.body);
     if (request.body.password){
-      driverAccount.password = encryptor.encrypt(request.body.password);
-      driverAccount.email = request.body.email;
-      driverAccount.moderator = false;
+      driver.account = {
+        password:encryptor.encrypt(request.body.password),
+        email: request.body.email,
+        moderator: false
+      };
+      driver.name = request.body.fname + " " + request.body.lname;
+      driver.phone = request.body.phone;
+    }
+    else {
+      throw Error("password not provided");
     }
     try {
-      await driverAccount.save();
-      response.send(driverAccount);
+      await driver.save();
+      response.send(driver);
     } catch (error) {
       response.status(500).send(error);
     }
@@ -135,14 +141,15 @@ app.post("/api/driverAccount", async (request, response) => {
 
 
 app.post("/api/driverAccount/login", async (request, response) => {
-    const driverAccount = await DriverAccountModel.findOne({ email: request.body.email });
+    const driver = await DriverModel.findOne({ "account.email": request.body.email });
+    const driverAccount = driver.account;
     if (!driverAccount){
       response.status(402).send({message: "no driver account with email: " + request.body.email});
       return;
     }
     var decrypted = encryptor.decrypt(driverAccount.password);
     if (decrypted == request.body.password){
-      response.status(200).send(driverAccount);
+      response.status(200).send(driver);
       return;
     }
     else {
@@ -151,7 +158,8 @@ app.post("/api/driverAccount/login", async (request, response) => {
 });
 
 app.get("/api/driverAccount/isModerator/(:email)", async (request, response) => {
-    const driverAccount = await DriverAccountModel.findOne({ email: request.params.email });
+    const driver = await DriverModel.findOne({ "account.email": request.params.email });
+    const driverAccount = driver.account;
     if (!driverAccount){
       response.status(402).send({message: "no driver account with email: " + request.params.email});
       return;

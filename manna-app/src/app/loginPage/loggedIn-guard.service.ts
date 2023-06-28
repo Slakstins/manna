@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
 import { DriverAccountAPIService } from '../api-services/driver-account-api.service';
-import { DriverAccount } from '../interfaces/driver-account';
+import { Driver } from '../interfaces/driver';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class LoggedInGuardService {
         password: password,
         moderator: false
       }
-      let success = await this.accountAPI.login(driverAccount as DriverAccount).toPromise().then((res) => {
+      let success = await this.accountAPI.login(driverAccount).toPromise().then((res) => {
         return true
       }, (error) => {
         return false;
