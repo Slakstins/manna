@@ -2,9 +2,10 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Address } from 'src/app/interfaces/address';
 import { AddressAPIService } from 'src/app/api-services/addressapi.service';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AddressPopupComponent } from './address-popup/address-popup.component';
-import { AddAddressComponent } from './add-address/add-address.component';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { RowPopupComponent } from '../../../row-popup/row-popup.component';
+import { AddPopupComponent } from '../../../add-popup/add-popup.component';
+import { AddPopupFormat, InputType } from 'src/app/add-popup/add-popup-format';
 
 
 @Component({
@@ -44,20 +45,15 @@ export class AddressTableComponent implements OnInit, OnDestroy {
   addresses!: Address[];
 
   displayAddAddress() {
-    let dialogRef = this.dialog.open(AddAddressComponent);
-    //subscribe to events!!
-    const sub = dialogRef.componentInstance.onAdd.subscribe((address) => {
-      this.addAddressTableData(address);
-      // do something
+    let dialogRef = this.dialog.open(AddPopupComponent, {
+      data: {
+        addPopupData: this.addPopupData,
+        addFunction: this.addAddress
+      }
     });
-    dialogRef.afterClosed().subscribe(() => {
-      sub.unsubscribe();
-    });
+
   }
 
-  addAddressTableData(address: Address) {
-    this.addresses.push(address);
-  }
 
   removeAddressTableData(id: string){
     this.addresses = this.addresses.filter((address) => {
@@ -67,8 +63,12 @@ export class AddressTableComponent implements OnInit, OnDestroy {
 
   displayRowData(address: Address) {
     console.log(address);
-    let dialogRef = this.dialog.open(AddressPopupComponent, {
-      data: address,
+    let dialogRef = this.dialog.open(RowPopupComponent, {
+      data: {
+        "model": address,
+        "API": this.addressAPI,
+        "confs": this.valEditComponentConfs
+      },
     });
     const sub = dialogRef.componentInstance.onDel.subscribe((id) => {
       this.removeAddressTableData(id);
@@ -97,5 +97,70 @@ export class AddressTableComponent implements OnInit, OnDestroy {
     console.log("search field set to: " + field);
     this.searchField = field;
   }
+
+  addAddress = (d: AddPopupFormat[], dialogRef: MatDialogRef<AddPopupComponent>) => {
+    //convert to address format
+    let a : Address = {address: "", delivery: false, name: "", notes: "", phone: ""};
+    for(let field of d) {
+      this.update(field.label as keyof(Address), a, field.value );
+    }
+    //call api
+    this.sub = this.addressAPI.post(a).subscribe((res) => {
+      console.log("successfully added");
+      this.addresses = [...this.addresses, res as Address];
+      dialogRef.close();
+    },
+    (error) => {
+      console.log(error);
+    });
+  } 
+
+
+
+  //fixes weird type issue
+    update<Key extends keyof Address>(key: Key, a: Address[Key], value: any) {
+      a[key] = value;
+  }
+
+  addPopupData: AddPopupFormat[] = [
+    {
+    label: "name",
+    type: InputType.Text,
+    value: ""
+    },
+    {
+    label: "address",
+    type: InputType.Text,
+    value: ""
+    },
+    {
+    label: "phone",
+    type: InputType.Text,
+    value: ""
+    },
+    {
+    label: "notes",
+    type: InputType.Text,
+    value: ""
+    },
+    {
+    label: "delivery",
+    type: InputType.Check,
+    value: false
+    },
+]
+
+  valEditComponentConfs: any[] = [
+    {label: "address",
+    type: "string"},
+    {label: "name",
+    type: "string"},
+    {label: "phone",
+    type: "string"},
+    {label: "notes",
+    type: "string"},
+    {label: "delivery",
+    type: "check"},
+  ]
 
 }
