@@ -157,7 +157,8 @@ app.post("/api/driverAccount/login", async (request, response) => {
 });
 
 app.get("/api/driverAccount/isModerator/(:email)", async (request, response) => {
-    const driverAccount = await DriverModel.findOne({ email: request.params.email }).account;
+    const driver = await DriverModel.findOne({ "account.email": request.params.email });
+    const driverAccount = driver.account;
     if (!driverAccount){
       response.status(402).send({message: "no driver account with email: " + request.params.email});
       return;

@@ -41,6 +41,7 @@ export class AuthService {
   }
 
   hasSignedIn() {
+    console.log("has signed in : " + localStorage.getItem("email"));
     return localStorage.getItem("email");
   }
 
