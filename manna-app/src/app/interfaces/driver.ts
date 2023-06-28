@@ -4,4 +4,9 @@ export interface Driver {
     phone: string;
     notes: string;
     _id?: any;
+    account?: {
+        email: string,
+        password: string,
+        moderator: boolean;
+    }
 }

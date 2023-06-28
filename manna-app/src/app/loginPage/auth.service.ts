@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { DriverAccount } from '../interfaces/driver-account';
 import { Router } from '@angular/router';
 import { Driver } from '../interfaces/driver';
 import { DriverAccountAPIService } from '../api-services/driver-account-api.service';
@@ -15,10 +14,15 @@ export class AuthService {
 
   constructor(private router: Router, private accountAPI: DriverAccountAPIService) { }
 
-  login(acct: DriverAccount) {
-    localStorage.setItem("email", acct.email);
-    localStorage.setItem("password", acct.password);
-    this.goHome();
+  login(acct: Driver) {
+    if (acct.account){
+      localStorage.setItem("email", acct.account.email);
+      localStorage.setItem("password", acct.account.password);
+      this.goHome();
+    }
+    else {
+      throw Error("driver profile lacks account");
+    }
   }
 
   logout() {

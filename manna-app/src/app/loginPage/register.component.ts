@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DriverAccountAPIService } from '../api-services/driver-account-api.service';
 import { AuthService } from './auth.service';
-import { DriverAccount } from '../interfaces/driver-account';
+import { Driver } from '../interfaces/driver';
 
 @Component({
   selector: 'app-register',
@@ -29,16 +29,20 @@ export class RegisterComponent implements OnInit{
   register() {
     let bodyData =
     {
-      "firstname": this.firstname,
-      "lastname": this.lastname,
+      "fname": this.firstname,
+      "lname": this.lastname,
       "email": this.email,
       "password": this.password,
+      "phone": this.phone
     };
     this.driverAccountService.post(bodyData).subscribe(
       (res) => {
         //redirect to driver homepage
-        (res as DriverAccount).password = bodyData.password;
-        this.auth.login(res as DriverAccount);
+        const driver = res as Driver;
+        if (driver.account){
+          driver.account.password = bodyData.password;
+          this.auth.login(driver);
+        }
       },
       (error) => {
         console.log(error);

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DriverAccountAPIService } from '../api-services/driver-account-api.service';
 import { AuthService } from './auth.service';
-import { DriverAccount } from '../interfaces/driver-account';
+import { Driver } from '../interfaces/driver';
 
 @Component({
   selector: 'app-login',
@@ -37,9 +37,12 @@ export class LoginComponent implements OnInit{
       this.driverAccountService.login(bodyData).subscribe(
         (res) => {
           //redirect to home page based on Moderator value. Auth level should be returned in res
-          (res as DriverAccount).password = bodyData.password;
-          this.auth.login(res as DriverAccount);
-          console.log("success");
+          const driver = res as Driver;
+          if (driver.account){
+            driver.account.password = bodyData.password;
+            this.auth.login(res as Driver);
+
+          }
         },
         (error) => {
           console.log(error);

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environment';
 import { SharedAPIService } from './sharedapi.service';
 import { Driver } from '../interfaces/driver';
-import { DriverAccount } from '../interfaces/driver-account';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +13,8 @@ export class DriverAccountAPIService {
   constructor(private http: HttpClient, private sharedAPIService: SharedAPIService) {
   } 
 
-  public get() {
-    return this.sharedAPIService.get<DriverAccount>(this.collection);
-  }
 
-
+  //will need to edit when used
   public setField(data: any, id: string, field: string) {
     return this.sharedAPIService.setField(data, id, field, this.collection);
   }
