@@ -34,7 +34,7 @@ const DriverSchema = new mongoose.Schema({
       required: true
     }
   }
-});
+}, {collection: 'drivers'});
 
 const DriverModel = mongoose.model("Driver", DriverSchema);
 

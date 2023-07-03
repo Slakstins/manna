@@ -20,7 +20,7 @@ function addDriverRoutes(app) {
 
 
 
-    app.post("/api/driverAccount", async (request, response) => {
+    app.post("/api/driver/account", async (request, response) => {
         const driver = new DriverModel(request.body);
         if (request.body.password) {
             driver.account = {
@@ -43,7 +43,7 @@ function addDriverRoutes(app) {
     });
 
 
-    app.post("/api/driverAccount/login", async (request, response) => {
+    app.post("/api/driver/account/login", async (request, response) => {
         const driver = await DriverModel.findOne({ "account.email": request.body.email });
         const driverAccount = driver.account;
         if (!driverAccount) {
@@ -60,13 +60,14 @@ function addDriverRoutes(app) {
         }
     });
 
-    app.get("/api/driverAccount/isModerator/(:email)", async (request, response) => {
+    app.get("/api/driver/account/isModerator/(:email)", async (request, response) => {
         const driver = await DriverModel.findOne({ "account.email": request.params.email });
-        const driverAccount = driver.account;
-        if (!driverAccount) {
+
+        if (!driver) {
             response.status(402).send({ message: "no driver account with email: " + request.params.email });
             return;
         }
+        const driverAccount = driver.account;
         response.status(200).send({ "isModerator": driverAccount.moderator });
     });
 
@@ -154,7 +155,7 @@ function addDriverRoutes(app) {
 
 
 
-    app.get("/api/driverAccount/all", async (request, response) => {
+    app.get("/api/drivers", async (request, response) => {
 
         console.log("made it");
         const drivers = await DriverModel.find({});

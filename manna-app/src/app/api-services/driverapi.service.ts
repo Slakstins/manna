@@ -14,7 +14,7 @@ export class DriverAPIService {
   } 
 
   public get() {
-    return this.sharedAPIService.get<Driver>(this.collection);
+    return this.http.get<Driver[]>(this.url + "drivers", {});
   }
 
 
@@ -32,7 +32,7 @@ export class DriverAPIService {
   }
 
   public postAccount<DriverAccount>(data: DriverAccount) {
-    return this.http.post(this.url + "driverAccount", data);
+    return this.http.post(this.url + "driver/account", data);
   }
 
   public post<Driver>(data: Driver) {

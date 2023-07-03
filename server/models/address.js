@@ -22,7 +22,7 @@ const AddressSchema = new mongoose.Schema({
     required: false,
   }
 
-});
+}, {collection: 'addresses'});
 
 
 

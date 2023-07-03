@@ -9,7 +9,7 @@ import { Driver } from '../interfaces/driver';
 })
 export class DriverAccountAPIService {
   url = environment.baseUrl;
-  collection = "driverAccount";
+  collection = "driver/account";
   constructor(private http: HttpClient, private sharedAPIService: SharedAPIService) {
   } 
 
@@ -20,11 +20,11 @@ export class DriverAccountAPIService {
   }
 
   public login<DriverAccount>(data: DriverAccount) {
-    return this.http.post(this.url + "driverAccount/login", data);
+    return this.http.post(this.url + this.collection + "/login", data);
   }
 
   public isModerator(email: any) {
-    return this.http.get(this.url + "driverAccount/isModerator/" + email );
+    return this.http.get(this.url + this.collection + "/isModerator/" + email );
   }
 
 
