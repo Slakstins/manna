@@ -18,12 +18,17 @@ export class DriverAPIService {
   }
 
 
+  getDriver(email: string) {
+    return this.http.get(this.url + "driver/" + email, {});
+
+  }
+
   public setField(data: any, id: string, field: string) {
     return this.sharedAPIService.setField(data, id, field, this.collection);
   }
 
   public setDrivingValsFalse() {
-    return this.http.patch(this.url + "address/setDrivingValsFalse", {});
+    return this.http.patch(this.url + "driver/setDrivingValsFalse", {});
   }
 
   public postAccount<DriverAccount>(data: DriverAccount) {
