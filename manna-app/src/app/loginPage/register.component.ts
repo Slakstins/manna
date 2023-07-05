@@ -56,10 +56,18 @@ export class RegisterComponent implements OnInit{
         }
       },
       (error) => {
+        if (error.status == 409){
+          this.emailAlreadyInUse();
+        }
         console.log(error);
       }
 
     )
+
+  }
+
+  emailAlreadyInUse(){
+    alert("That email is already in use. Please choose a different one.")
 
   }
 
