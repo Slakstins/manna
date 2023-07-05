@@ -3,6 +3,7 @@ make driver delivery selection link up
 add data validation for registration fields (email should be email format, etc, phone number validation, email validation)
 account management stuff - password change, forgot password, delete account
 filter search sometimes doesn't work with a single letter
+add a confirm password field
 
 
 Manage drivers

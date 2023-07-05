@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DriverAccountAPIService } from '../api-services/driver-account-api.service';
 import { AuthService } from './auth.service';
 import { Driver } from '../interfaces/driver';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -24,6 +25,12 @@ export class RegisterComponent implements OnInit{
     // if (this.auth.isSignedIn()){
       // this.auth.goHome();
     // }
+  }
+
+  checkValidData(invalids: any[]) {
+    
+    return this.firstname.trim() && this.lastname.trim() && this.email.trim() && this.password.trim() && this.phone.trim() &&
+    this.password.length >= 6 && this.phone.length == 10 && !invalids.includes(true);
   }
 
   register() {

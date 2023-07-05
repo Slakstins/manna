@@ -21,6 +21,8 @@ import { RegisterComponent } from './loginPage/register.component';
 import { DriverHomeComponent } from './driver-nav/driver-home/driver-home.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DriverNavComponent } from './driver-nav/driver-nav.component';
+import { NgxMaskApplierService } from 'ngx-mask/lib/ngx-mask-applier.service';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 
 
@@ -48,9 +50,11 @@ import { DriverNavComponent } from './driver-nav/driver-nav.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
-  providers: [],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

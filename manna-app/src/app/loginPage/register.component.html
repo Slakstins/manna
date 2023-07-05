@@ -1,42 +1,58 @@
 <div class="container mt-4">
-    <h1>Driver Registation</h1>
+  <h1>Driver Registation</h1>
 
-    <form>
-      <div class="form-group">
-        <label>First name</label>
-        <input type="text" [(ngModel)]="firstname" [ngModelOptions]="{standalone: true}" class="form-control"
-          id="stname" placeholder="Enter Name">
+  <form>
+    <div class="form-group">
+      <label>First name</label>
+      <input type="text" [(ngModel)]="firstname" [ngModelOptions]="{standalone: true}" class="form-control" id="stname"
+        placeholder="Enter Name" #fnamem="ngModel" minlength="1">
+     <div *ngIf="fnamem.invalid && (fnamem.dirty || fnamem.touched)" class="alert">
+        <div *ngIf="fnamem.errors?.['minlength']">Password must be at least 6 characters long.</div>
       </div>
+    </div>
 
-      <div class="form-group">
-        <label>Last name</label>
-        <input type="text" [(ngModel)]="lastname" [ngModelOptions]="{standalone: true}" class="form-control" id="stname"
-          placeholder="Enter Name">
+    <div class="form-group">
+      <label>Last name</label>
+      <input type="text" [(ngModel)]="lastname" [ngModelOptions]="{standalone: true}" class="form-control" id="stname"
+        placeholder="Enter Name" #lnamem="ngModel" minlength="1">
+     <div *ngIf="lnamem.invalid && (lnamem.dirty || lnamem.touched)" class="alert">
+        <div *ngIf="lnamem.errors?.['minlength']">Password must be at least 6 characters long.</div>
       </div>
-      <div class="form-group">
-        <label>phone</label>
-        <input type="text" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}" class="form-control" id="phone"
-          placeholder="Enter Phone">
+    </div>
+    <div class="form-group">
+      <label>phone</label>
+      <input type="text" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}" class="form-control" id="phone"
+        placeholder="Enter Phone" mask="(000) 000-0000" #phonem="ngModel" minlength="10">
+     <!-- <div *ngIf="phonem.invalid && (phonem.dirty || phonem.touched)" class="alert">
+        <div *ngIf="phonem.errors?.['minlength']"></div>
+      </div> -->
+    </div>
+    <div class="form-group">
+      <label>email</label>
+      <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control" id="course"
+        placeholder="Enter Name" #emailm="ngModel" required email required minlength="1">
+     <div *ngIf="emailm.invalid && (emailm.dirty || emailm.touched)" class="alert">
+        <div *ngIf="emailm.errors?.['email']">Invalid email format</div>
+        <div *ngIf="emailm.errors?.['minlength']">Email required</div>
       </div>
-      <div class="form-group">
-        <label>email</label>
-        <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control" id="course"
-          placeholder="Enter Name">
+    </div>
+
+    <div class="form-group">
+      <label>password</label>
+      <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form-control" id="fee"
+        placeholder="Enter Password" required minlength="6" #passwordm="ngModel">
+      <div *ngIf="passwordm.invalid && (passwordm.dirty || passwordm.touched)" class="alert">
+        <div *ngIf="passwordm.errors?.['minlength']">Password must be at least 6 characters long</div>
       </div>
-
-      <div class="form-group">
-        <label>password</label>
-        <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form-control"
-          id="fee" placeholder="Enter Password">
-      </div>
+    </div>
 
 
 
-      <button type="submit" class="btn btn-primary mt-4" (click)="register()">Submit</button>
+    <button type="submit" class="btn btn-primary mt-4" (click)="register()" [disabled]="!checkValidData([fnamem.invalid, lnamem.invalid, phonem.invalid, emailm.invalid, passwordm.invalid])" >Submit</button>
 
-    </form>
-    <p class="mt-4">Already have an account?</p>
-    <button class="btn btn-primary" [routerLink]="['/login']">Login</button>
+  </form>
+  <p class="mt-4">Already have an account?</p>
+  <button class="btn btn-primary" [routerLink]="['/login']">Login</button>
 
 
-  </div>
+</div>
