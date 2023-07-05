@@ -15,6 +15,7 @@ import { RowPopupComponent } from 'src/app/row-popup/row-popup.component';
 export class DriverTableComponent {
   constructor(private driverAPI: DriverAPIService, public dialog: MatDialog){}
 
+  title = "Drivers";
   options = [{ description: "any", id: 0 }, { description: "name", id: 1 }, { description: "phone", id: 2 },{ description: "notes", id: 3 }
   ];
   searchText = "";

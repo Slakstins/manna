@@ -45,11 +45,11 @@ function addDriverRoutes(app) {
 
     app.post("/api/driver/account/login", async (request, response) => {
         const driver = await DriverModel.findOne({ "account.email": request.body.email });
-        const driverAccount = driver.account;
-        if (!driverAccount) {
+        if (!driver) {
             response.status(402).send({ message: "no driver account with email: " + request.body.email });
             return;
         }
+        const driverAccount = driver.account;
         var decrypted = encryptor.decrypt(driverAccount.password);
         if (decrypted == request.body.password) {
             response.status(200).send(driver);

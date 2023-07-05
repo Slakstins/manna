@@ -17,6 +17,7 @@ export class AddressTableComponent implements OnInit, OnDestroy {
   constructor(private addressAPI: AddressAPIService, public dialog: MatDialog) {
 
   }
+  title = "Addresses";
   options = [{ description: "any", id: 0 }, { description: "name", id: 1 }, { description: "address", id: 2 }, { description: "phone", id: 3 }, { description: "notes", id: 4 }
   ];
   searchText = "";
