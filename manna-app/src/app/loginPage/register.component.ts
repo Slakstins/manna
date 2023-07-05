@@ -34,20 +34,24 @@ export class RegisterComponent implements OnInit{
   }
 
   register() {
+    let accountData = {
+      email: this.email,
+      password: this.password
+    }
     let bodyData =
     {
       "fname": this.firstname,
       "lname": this.lastname,
-      "email": this.email,
-      "password": this.password,
-      "phone": this.phone
+      "phone": this.phone,
+      "account": accountData
     };
+    console.log(bodyData);
     this.driverAccountService.post(bodyData).subscribe(
       (res) => {
         //redirect to driver homepage
         const driver = res as Driver;
         if (driver.account){
-          driver.account.password = bodyData.password;
+          driver.account.password = bodyData.account.password;
           this.auth.login(driver);
         }
       },

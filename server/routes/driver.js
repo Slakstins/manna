@@ -22,10 +22,16 @@ function addDriverRoutes(app) {
 
     app.post("/api/driver/account", async (request, response) => {
         const driver = new DriverModel(request.body);
-        if (request.body.password) {
+        const duplicate = await DriverModel.findOne({"account.email": driver.account.email});
+        if (duplicate) {
+            console.log(duplicate);
+            response.status(409).send({"message": "email already in use"});
+            return;
+        }
+        else if (request.body.account.password) {
             driver.account = {
-                password: encryptor.encrypt(request.body.password),
-                email: request.body.email,
+                password: encryptor.encrypt(request.body.account.password),
+                email: request.body.account.email,
                 moderator: false
             };
             driver.name = request.body.fname + " " + request.body.lname;
@@ -37,6 +43,7 @@ function addDriverRoutes(app) {
         try {
             await driver.save();
             response.send(driver);
+            return;
         } catch (error) {
             response.status(500).send(error);
         }
